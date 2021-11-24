@@ -1,19 +1,10 @@
 import {Link, useLoaderData} from "remix"
+import {getPosts, Post} from "~/post"
 
-interface Post {
-  slug: string
-  title: string
-}
-export const loader = (): Post[] => {
-  return [
-    {slug: "first-post", title: "First Post"},
-    {slug: "go-pointers", title: "Pointers in Go"},
-  ]
-}
+export const loader = (): Post[] => getPosts()
 
 const Posts = () => {
   const posts = useLoaderData()
-  console.log(posts)
   return (
     <div>
       <h1>Posts</h1>
