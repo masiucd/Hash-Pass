@@ -1,4 +1,4 @@
-import {Link, useLoaderData} from "remix"
+import {Link, Outlet, useLoaderData} from "remix"
 import {getPosts, Post} from "~/post"
 import adminStyles from "~/styles/admin.css"
 
@@ -24,7 +24,7 @@ const Admin = () => {
         </ul>
       </nav>
       <main>
-        <p>...content</p>
+        <Outlet />
       </main>
     </div>
   )

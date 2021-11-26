@@ -9,6 +9,11 @@ export interface Post {
   title: string
   html?: string
 }
+interface NewPost {
+  title: string
+  slug: string
+  markdown: string
+}
 
 interface FrontMatter {
   title: string
@@ -40,11 +45,16 @@ export const getPosts = async (): Promise<Post[]> => {
 }
 
 export const getPost = async (slug: string): Promise<Post> => {
-  // console.log(path.join())
   const blogPostPath = path.join(postPath, slug + ".md")
   const file = await fs.readFile(blogPostPath)
   const {attributes, body} = parseFrontMatter(file.toString())
   invariant(isValidPostAttributes(attributes), `Post ${blogPostPath} is missing attributes`)
   const html = marked(body)
   return {slug, title: attributes.title, html}
+}
+
+export const createPost = async (post: NewPost) => {
+  const md = `---\ntitle: ${post.title}\n---\n\s${post.markdown}`
+  await fs.writeFile(path.join(postPath, post.slug + ".md"), md)
+  return getPost(post.slug)
 }
