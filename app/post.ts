@@ -7,6 +7,7 @@ import {marked} from "marked"
 export interface Post {
   slug: string
   title: string
+  html?: string
 }
 
 interface FrontMatter {
@@ -24,8 +25,6 @@ function isValidPostAttributes(attributes: any): attributes is FrontMatter {
 
 export const getPosts = async (): Promise<Post[]> => {
   const dir = await fs.readdir(postPath)
-  console.log("dir", dir)
-  console.log("postsPath", postPath)
 
   return Promise.all(
     dir.map(async fileName => {
@@ -40,11 +39,12 @@ export const getPosts = async (): Promise<Post[]> => {
   )
 }
 
-export const getPost = async (slug: string) => {
+export const getPost = async (slug: string): Promise<Post> => {
   // console.log(path.join())
   const blogPostPath = path.join(postPath, slug + ".md")
   const file = await fs.readFile(blogPostPath)
-  const {attributes} = parseFrontMatter(file.toString())
+  const {attributes, body} = parseFrontMatter(file.toString())
   invariant(isValidPostAttributes(attributes), `Post ${blogPostPath} is missing attributes`)
-  return {slug, title: attributes.title}
+  const html = marked(body)
+  return {slug, title: attributes.title, html}
 }
