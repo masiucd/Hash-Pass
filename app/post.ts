@@ -4,16 +4,27 @@ import parseFrontMatter from "front-matter"
 import invariant from "tiny-invariant"
 import {marked} from "marked"
 
+export class NewPost {
+  title: string
+  slug: string
+  markdown: string
+  constructor(title: string, slug: string, markdown: string) {
+    this.title = title
+    this.slug = slug
+    this.markdown = markdown
+  }
+}
+
 export interface Post {
   slug: string
   title: string
   html?: string
 }
-interface NewPost {
-  title: string
-  slug: string
-  markdown: string
-}
+// interface NewPost {
+//   title: string
+//   slug: string
+//   markdown: string
+// }
 
 interface FrontMatter {
   title: string
