@@ -1,7 +1,7 @@
 import {Link, useLoaderData} from "remix"
 import {getPosts, Post} from "~/post"
 
-export const loader = (): Post[] => getPosts()
+export const loader = (): Promise<Post[]> => getPosts()
 
 const Posts = () => {
   const posts = useLoaderData()

@@ -12,10 +12,7 @@ import {
 } from "remix"
 import type {LinksFunction} from "remix"
 
-import deleteMeRemixStyles from "~/styles/demos/remix.css"
-import globalStylesUrl from "~/styles/global.css"
-import darkStylesUrl from "~/styles/dark.css"
-import styles from "./tailwind.css"
+import styles from "~/styles/tailwind.css"
 
 /**
  * The `links` export is a function that returns an array of objects that map to
@@ -26,16 +23,7 @@ import styles from "./tailwind.css"
  * https://remix.run/api/app#links
  */
 export let links: LinksFunction = () => {
-  return [
-    // {rel: "stylesheet", href: globalStylesUrl},
-    // {
-    //   rel: "stylesheet",
-    //   href: darkStylesUrl,
-    //   media: "(prefers-color-scheme: dark)",
-    // },
-    // {rel: "stylesheet", href: deleteMeRemixStyles},
-    {rel: "stylesheet", href: styles},
-  ]
+  return [{rel: "stylesheet", href: styles}]
 }
 
 /**
@@ -73,48 +61,71 @@ function Document({children, title}: {children: React.ReactNode; title?: string}
     </html>
   )
 }
+const navData = [
+  {
+    path: "/",
+    name: "home",
+  },
+  {
+    path: "/content",
+    name: "content",
+  },
+  {
+    path: "/about",
+    name: "about",
+  },
+]
+
+const NavIcon = () => {
+  return (
+    <div className="p-2">
+      <strong className="text-2xl">Wiki Go</strong>
+    </div>
+  )
+}
+
+const Nav = () => {
+  return (
+    <nav>
+      <ul className="p-2 max-w-2xl m-auto flex border-solid	border-4 border-black justify-between">
+        {navData.map(({path, name}) => (
+          <li key={name}>
+            <Link to={path}>{name}</Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}
+
+const Footer = () => {
+  return (
+    <footer className="remix-app__footer">
+      <div className="container remix-app__footer-content">
+        <p>&copy; You!</p>
+      </div>
+    </footer>
+  )
+}
 
 function Layout({children}: React.PropsWithChildren<{}>) {
   return (
     <div className="remix-app">
-      <header className="remix-app__header">
-        <div className="container remix-app__header-content">
-          <Link to="/" title="Remix" className="remix-app__header-home-link">
-            <RemixLogo />
-          </Link>
-          <nav aria-label="Main navigation" className="remix-app__header-nav">
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/posts">Posts</Link>
-              </li>
-              <li>
-                <a href="https://remix.run/docs">Remix Docs</a>
-              </li>
-              <li>
-                <a href="https://github.com/remix-run/remix">GitHub</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
+      <header>
+        <Link to="/">
+          <NavIcon />
+        </Link>
+        <Nav />
       </header>
-      <div className="remix-app__main">
-        <div className="container remix-app__main-content">{children}</div>
-      </div>
-      <footer className="remix-app__footer">
-        <div className="container remix-app__footer-content">
-          <p>&copy; You!</p>
-        </div>
-      </footer>
+      <main>{children}</main>
+
+      <Footer />
     </div>
   )
 }
 
 export function CatchBoundary() {
   let caught = useCatch()
-
   let message
   switch (caught.status) {
     case 401:
