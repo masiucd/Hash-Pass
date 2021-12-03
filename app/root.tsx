@@ -15,6 +15,7 @@ import type {LinksFunction} from "remix"
 import deleteMeRemixStyles from "~/styles/demos/remix.css"
 import globalStylesUrl from "~/styles/global.css"
 import darkStylesUrl from "~/styles/dark.css"
+import styles from "./tailwind.css"
 
 /**
  * The `links` export is a function that returns an array of objects that map to
@@ -26,13 +27,14 @@ import darkStylesUrl from "~/styles/dark.css"
  */
 export let links: LinksFunction = () => {
   return [
-    {rel: "stylesheet", href: globalStylesUrl},
-    {
-      rel: "stylesheet",
-      href: darkStylesUrl,
-      media: "(prefers-color-scheme: dark)",
-    },
-    {rel: "stylesheet", href: deleteMeRemixStyles},
+    // {rel: "stylesheet", href: globalStylesUrl},
+    // {
+    //   rel: "stylesheet",
+    //   href: darkStylesUrl,
+    //   media: "(prefers-color-scheme: dark)",
+    // },
+    // {rel: "stylesheet", href: deleteMeRemixStyles},
+    {rel: "stylesheet", href: styles},
   ]
 }
 
