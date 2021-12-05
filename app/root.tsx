@@ -1,6 +1,5 @@
 import * as React from "react"
 import {
-  Link,
   Links,
   LiveReload,
   Meta,
@@ -13,6 +12,8 @@ import {
 import type {LinksFunction} from "remix"
 
 import styles from "~/styles/tailwind.css"
+import {Fragment} from "react"
+import Layout from "./components/layout"
 
 /**
  * The `links` export is a function that returns an array of objects that map to
@@ -41,7 +42,13 @@ export default function App() {
   )
 }
 
-function Document({children, title}: {children: React.ReactNode; title?: string}) {
+function Document({
+  children,
+  title,
+}: {
+  children: React.ReactNode
+  title?: string
+}) {
   return (
     <html lang="en">
       <head>
@@ -51,7 +58,7 @@ function Document({children, title}: {children: React.ReactNode; title?: string}
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="bg-white text-black  dark:text-white dark:bg-gray-800 ">
         {children}
         <RouteChangeAnnouncement />
         <ScrollRestoration />
@@ -61,78 +68,23 @@ function Document({children, title}: {children: React.ReactNode; title?: string}
     </html>
   )
 }
-const navData = [
-  {
-    path: "/",
-    name: "home",
-  },
-  {
-    path: "/content",
-    name: "content",
-  },
-  {
-    path: "/about",
-    name: "about",
-  },
-]
-
-const NavIcon = () => {
-  return (
-    <div className="p-2">
-      <strong className="text-2xl">Wiki Go</strong>
-    </div>
-  )
-}
-
-const Nav = () => {
-  return (
-    <nav>
-      <ul className="p-2 max-w-2xl m-auto flex border-solid	border-4 border-black justify-between">
-        {navData.map(({path, name}) => (
-          <li key={name}>
-            <Link to={path}>{name}</Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  )
-}
-
-const Footer = () => {
-  return (
-    <footer className="remix-app__footer">
-      <div className="container remix-app__footer-content">
-        <p>&copy; You!</p>
-      </div>
-    </footer>
-  )
-}
-
-function Layout({children}: React.PropsWithChildren<{}>) {
-  return (
-    <div className="remix-app">
-      <header>
-        <Link to="/">
-          <NavIcon />
-        </Link>
-        <Nav />
-      </header>
-      <main>{children}</main>
-
-      <Footer />
-    </div>
-  )
-}
 
 export function CatchBoundary() {
   let caught = useCatch()
   let message
   switch (caught.status) {
     case 401:
-      message = <p>Oops! Looks like you tried to visit a page that you do not have access to.</p>
+      message = (
+        <p>
+          Oops! Looks like you tried to visit a page that you do not have access
+          to.
+        </p>
+      )
       break
     case 404:
-      message = <p>Oops! Looks like you tried to visit a page that does not exist.</p>
+      message = (
+        <p>Oops! Looks like you tried to visit a page that does not exist.</p>
+      )
       break
 
     default:
@@ -160,7 +112,10 @@ export function ErrorBoundary({error}: {error: Error}) {
           <h1>There was an error</h1>
           <p>{error.message}</p>
           <hr />
-          <p>Hey, developer, you should replace this with what you want your users to see.</p>
+          <p>
+            Hey, developer, you should replace this with what you want your
+            users to see.
+          </p>
         </div>
       </Layout>
     </Document>
