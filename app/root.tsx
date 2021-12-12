@@ -10,15 +10,15 @@ import {
 } from "remix"
 import type {LinksFunction} from "remix"
 
-// import globalStylesUrl from "~/styles/global.css"
 // import darkStylesUrl from "~/styles/dark.css"
+import globalStylesUrl from "~/styles/global.css"
 import styles from "~/styles/tailwind.css"
 import {Fragment} from "react"
 
 // https://remix.run/api/app#links
 export let links: LinksFunction = () => {
   return [
-    // {rel: "stylesheet", href: globalStylesUrl},
+    {rel: "stylesheet", href: globalStylesUrl},
     // {
     //   rel: "stylesheet",
     //   href: darkStylesUrl,
@@ -27,7 +27,7 @@ export let links: LinksFunction = () => {
     {
       rel: "stylesheet",
       href: styles,
-      media: "(prefers-color-scheme: dark)",
+      // media: "(prefers-color-scheme: dark)",
     },
   ]
 }
@@ -115,8 +115,18 @@ function Document({
         {title ? <title>{title}</title> : null}
         <Meta />
         <Links />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="true"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;1,300;1,400&family=Poppins:ital,wght@0,400;0,500;1,400;1,500&display=swap"
+          rel="stylesheet"
+        />
       </head>
-      <body className="bg-sky-200">
+      <body className="font-body bg-blue-400">
         {children}
         <ScrollRestoration />
         <Scripts />
@@ -126,6 +136,83 @@ function Document({
   )
 }
 
+const Header = () => {
+  return (
+    <header className="bg-transparent py-5 mb-5">
+      <Nav />
+    </header>
+  )
+}
+
+const navItems = [
+  {
+    name: "home",
+    path: "/",
+  },
+  {
+    name: "about",
+    path: "/",
+  },
+  {
+    name: "home",
+    path: "/",
+  },
+]
+const Nav = () => {
+  return (
+    <nav className="p-3 flex justify-center shadow h-24">
+      <Link to="/">
+        <strong
+          className={`
+          transition-all 
+          duration-200
+          text-3xl
+          font-sans
+          py-2
+          px-3
+          border-b-2
+          hover:border-b-4
+          hover:px-2
+          hover:py-1
+          hover:text-4xl
+          `}
+        >
+          Wiki Go
+        </strong>
+      </Link>
+    </nav>
+  )
+}
+
+const Footer = () => (
+  <footer
+    className={`
+      bg-transparent
+      h-24
+      p-2
+      shadow-2xl
+      `}
+  >
+    <Link to="/">
+      <strong
+        className={`
+          transition-all 
+          duration-200
+          text-3xl
+          font-sans
+          `}
+      >
+        Wiki Go
+      </strong>
+    </Link>
+  </footer>
+)
 function Layout({children}: {children: React.ReactNode}) {
-  return <Fragment>{children}</Fragment>
+  return (
+    <Fragment>
+      <Header />
+      <main className="min-h-[calc(100vh-12rem)]">{children}</main>
+      <Footer />
+    </Fragment>
+  )
 }

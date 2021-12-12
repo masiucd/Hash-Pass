@@ -3,8 +3,22 @@ module.exports = {
   content: ["./app/**/*.{ts,tsx}"],
   darkMode: "media", // or 'media' or 'class'
   theme: {
-    extend: {},
+    fontFamily: {
+      sans: ["Barlow", "sans-serif"],
+      body: ["Poppins", "sans-serif"],
+    },
+
+    extend: {
+      colors: {
+        transparent: "var(--color-transparent)",
+      },
+      height: theme => ({
+        "main-height": "min-h-[calc(100vh-12rem)]",
+      }),
+    },
   },
   variants: {},
   plugins: [],
 }
+// font-family: 'Barlow', sans-serif;
+// font-family: 'Poppins', sans-serif;
