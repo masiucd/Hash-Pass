@@ -14,16 +14,12 @@ import type {LinksFunction} from "remix"
 import globalStylesUrl from "~/styles/global.css"
 import styles from "~/styles/tailwind.css"
 import {Fragment} from "react"
+import useDarkMode from "./hooks/theme"
 
 // https://remix.run/api/app#links
 export let links: LinksFunction = () => {
   return [
     {rel: "stylesheet", href: globalStylesUrl},
-    // {
-    //   rel: "stylesheet",
-    //   href: darkStylesUrl,
-    //   media: "(prefers-color-scheme: dark)",
-    // },
     {
       rel: "stylesheet",
       href: styles,
@@ -126,7 +122,7 @@ function Document({
           rel="stylesheet"
         />
       </head>
-      <body className="font-body bg-blue-400">
+      <body className="font-body bg-slate-200 dark:bg-slate-800 dark:text-white transition-all">
         {children}
         <ScrollRestoration />
         <Scripts />
@@ -137,27 +133,24 @@ function Document({
 }
 
 const Header = () => {
+  const {changeTheme} = useDarkMode()
   return (
-    <header className="bg-transparent py-5 mb-5">
+    <header className="bg-transparent py-5 mb-5 relative">
       <Nav />
+      <button
+        type="button"
+        name="theme-button"
+        className="absolute top-5 right-10"
+        onClick={() => {
+          changeTheme()
+        }}
+      >
+        Theme
+      </button>
     </header>
   )
 }
 
-const navItems = [
-  {
-    name: "home",
-    path: "/",
-  },
-  {
-    name: "about",
-    path: "/",
-  },
-  {
-    name: "home",
-    path: "/",
-  },
-]
 const Nav = () => {
   return (
     <nav className="p-3 flex justify-center shadow h-24">
@@ -171,6 +164,8 @@ const Nav = () => {
           py-2
           px-3
           border-b-2
+          border-black
+          dark:border-white	
           hover:border-b-4
           hover:px-2
           hover:py-1
