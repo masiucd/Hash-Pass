@@ -6,13 +6,15 @@ import useHasMounted from "./mounted"
 const useDarkMode = (
   themeKey = "theme",
   themeValue: Theme = "light"
-): [Theme, () => void] => {
+): [Theme, () => void, boolean] => {
   const hasMounted = useHasMounted()
   const [storedValue, setValue] = useLocalStorage(themeKey, themeValue)
 
   const changeTheme = (): void => {
-    const nextTheme = storedValue === "light" ? "dark" : "light"
-    setValue(() => nextTheme)
+    if (hasMounted) {
+      const nextTheme = storedValue === "light" ? "dark" : "light"
+      setValue(() => nextTheme)
+    }
   }
 
   useEffect(() => {
@@ -24,7 +26,7 @@ const useDarkMode = (
     }
   }, [storedValue, hasMounted])
 
-  return [storedValue, changeTheme]
+  return [storedValue, changeTheme, hasMounted]
 }
 
 export default useDarkMode

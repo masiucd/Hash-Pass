@@ -451,6 +451,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   right: 2.5rem;
 }
 
+.z-10 {
+  z-index: 10;
+}
+
+.z-20 {
+  z-index: 20;
+}
+
 .mb-5 {
   margin-bottom: 1.25rem;
 }
@@ -487,6 +495,22 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .bg-transparent {
   background-color: var(--color-transparent);
+}
+
+.fill-black {
+  fill: #000;
+}
+
+.fill-gray-900 {
+  fill: #111827;
+}
+
+.stroke-black {
+  stroke: #000;
+}
+
+.stroke-gray-900 {
+  stroke: #111827;
 }
 
 .p-3 {
@@ -543,6 +567,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   transition-duration: 150ms;
 }
 
+.transition {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
 .duration-200 {
   transition-duration: 200ms;
 }
@@ -574,6 +606,26 @@ Ensure the default browser behavior of the `hidden` attribute.
 .dark .dark\:bg-slate-800 {
   --tw-bg-opacity: 1;
   background-color: rgb(30 41 59 / var(--tw-bg-opacity));
+}
+
+.dark .dark\:fill-slate-200 {
+  fill: #e2e8f0;
+}
+
+.dark .dark\:stroke-slate-200 {
+  stroke: #e2e8f0;
+}
+
+.dark .dark\:stroke-slate-500 {
+  stroke: #64748b;
+}
+
+.dark .dark\:stroke-slate-900 {
+  stroke: #0f172a;
+}
+
+.dark .dark\:stroke-slate-800 {
+  stroke: #1e293b;
 }
 
 .dark .dark\:text-white {

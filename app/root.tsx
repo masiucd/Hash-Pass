@@ -15,6 +15,9 @@ import globalStylesUrl from "~/styles/global.css"
 import styles from "~/styles/tailwind.css"
 import {Fragment} from "react"
 import useDarkMode from "./hooks/theme"
+import {AnimatePresence, motion} from "framer-motion"
+import Sun from "./components/icons/sun"
+import Moon from "./components/icons/moon"
 
 // https://remix.run/api/app#links
 export let links: LinksFunction = () => {
@@ -133,18 +136,20 @@ function Document({
 }
 
 const Header = () => {
-  const [theme, changeTheme] = useDarkMode()
+  const [theme, changeTheme, mounted] = useDarkMode()
   return (
     <header className="bg-transparent py-5 mb-5 relative">
       <Nav />
-      <button
+      <motion.button
         type="button"
         name="theme-button"
-        className="absolute top-5 right-10"
+        className="absolute top-5 right-10 z-20"
         onClick={changeTheme}
       >
-        {theme === "dark" ? "light" : "dark"} theme
-      </button>
+        <AnimatePresence>
+          {theme === "dark" && mounted ? <Sun /> : <Moon />}
+        </AnimatePresence>
+      </motion.button>
     </header>
   )
 }
