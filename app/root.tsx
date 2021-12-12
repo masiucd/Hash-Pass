@@ -133,7 +133,7 @@ function Document({
 }
 
 const Header = () => {
-  const {changeTheme} = useDarkMode()
+  const [theme, changeTheme] = useDarkMode()
   return (
     <header className="bg-transparent py-5 mb-5 relative">
       <Nav />
@@ -141,11 +141,9 @@ const Header = () => {
         type="button"
         name="theme-button"
         className="absolute top-5 right-10"
-        onClick={() => {
-          changeTheme()
-        }}
+        onClick={changeTheme}
       >
-        Theme
+        {theme === "dark" ? "light" : "dark"} theme
       </button>
     </header>
   )

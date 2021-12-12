@@ -1,33 +1,30 @@
 import {useEffect} from "react"
 import {Theme} from "~/context/theme/theme.context"
 import useLocalStorage from "./localstorage"
+import useHasMounted from "./mounted"
 
-const useDarkMode = (themeKey = "theme", themeValue: Theme = "light") => {
+const useDarkMode = (
+  themeKey = "theme",
+  themeValue: Theme = "light"
+): [Theme, () => void] => {
+  const hasMounted = useHasMounted()
   const [storedValue, setValue] = useLocalStorage(themeKey, themeValue)
 
-  const changeTheme = () => {
+  const changeTheme = (): void => {
     const nextTheme = storedValue === "light" ? "dark" : "light"
-    setValue(nextTheme)
+    setValue(() => nextTheme)
   }
 
   useEffect(() => {
-    // document.documentElement.classList.remove(
-    //   storedValue === "dark" ? "light" : "dark"
-    // )
-    // document.documentElement.classList.add(storedValue)
-
-    if (
-      storedValue === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      document.documentElement.classList.add("dark")
-    } else {
-      document.documentElement.classList.remove("dark")
+    if (hasMounted) {
+      document.documentElement.classList.remove(
+        storedValue === "dark" ? "light" : "dark"
+      )
+      document.documentElement.classList.add(storedValue)
     }
-  }, [storedValue])
+  }, [storedValue, hasMounted])
 
-  return {storedValue, setValue, changeTheme}
+  return [storedValue, changeTheme]
 }
 
 export default useDarkMode
