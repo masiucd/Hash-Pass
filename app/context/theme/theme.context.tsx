@@ -1,11 +1,4 @@
-import {
-  createContext,
-  Dispatch,
-  FC,
-  useContext,
-  useEffect,
-  useState,
-} from "react"
+import {createContext, Dispatch, FC, useContext, useEffect, useState} from "react"
 
 interface ThemeCtxType {
   theme: Theme
@@ -20,11 +13,13 @@ export const ThemeProvider: FC = ({children}) => {
   const [theme, setTheme] = useState<Theme>("light")
 
   const changeTheme = (t: Theme): void => {
-    const root = window.document.documentElement
+    const root = typeof window !== "undefined" ? window.document.documentElement : null
     const isDark = t === "dark"
     setTheme(isDark ? "light" : "dark")
-    root.classList.remove(isDark ? "light" : "dark")
-    root.classList.add(t)
+    if (root) {
+      root.classList.remove(isDark ? "light" : "dark")
+      root.classList.add(t)
+    }
     localStorage.setItem("theme", t)
   }
 

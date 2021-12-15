@@ -1,5 +1,7 @@
 import type {MetaFunction, LoaderFunction} from "remix"
 import {useLoaderData, json, Link} from "remix"
+import Waves from "~/components/bg.images/waves"
+import WavesUp from "~/components/bg.images/waves.up"
 
 type IndexData = {
   resources: Array<{name: string; url: string}>
@@ -54,13 +56,45 @@ export const meta: MetaFunction = () => {
   }
 }
 
+const WavesUpWrapper = () => {
+  return (
+    <div>
+      <WavesUp />
+    </div>
+  )
+}
+const WavesWrapper = () => {
+  return (
+    <div className="mt-auto">
+      <Waves />
+    </div>
+  )
+}
+
+const Cta = () => {
+  return (
+    <div className="border w-2/5 m-auto flex flex-col jus items-center	justify-center py-5">
+      <h1 className="text-5xl mb-2">Wiki go</h1>
+      <p>
+        Your <span className="text-blue-700 font-bold dark:text-blue-400">Go</span> documentation{" "}
+      </p>
+      <div className="actions border w-2/5 flex justify-evenly p-2">
+        <Link to="/topics">Topics</Link>
+        <Link to="/contact">Contact</Link>
+      </div>
+    </div>
+  )
+}
+
 // https://remix.run/guides/routing#index-routes
 export default function Index() {
   const data = useLoaderData<IndexData>()
-  console.log(data)
+
   return (
-    <div>
-      <h1>hello</h1>
+    <div className="min-h-[calc(100vh-20rem)] flex flex-col">
+      <WavesUpWrapper />
+      <Cta />
+      <WavesWrapper />
     </div>
   )
 }
