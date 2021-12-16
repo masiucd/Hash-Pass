@@ -1,18 +1,20 @@
+const defaultTheme = require("tailwindcss/defaultTheme")
 module.exports = {
   mode: "jit",
   content: ["./app/**/*.{ts,tsx}"],
   darkMode: "class", // or 'media' or 'class'
   theme: {
     fontFamily: {
-      sans: ["Barlow", "sans-serif"],
-      body: ["Poppins", "sans-serif"],
+      title: ["Barlow", "sans-serif", ...defaultTheme.fontFamily.sans],
+      body: ["Poppins", "sans-serif", ...defaultTheme.fontFamily.sans],
     },
-
     extend: {
       colors: {
         transparent: "var(--color-transparent)",
       },
       height: theme => ({
+        "header-height": "var(--header-height)",
+        "footer-height": "var(--footer-height)",
         "main-height": "min-h-[calc(100vh-12rem)]",
       }),
     },

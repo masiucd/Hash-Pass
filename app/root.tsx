@@ -1,13 +1,4 @@
-import {
-  Link,
-  Links,
-  LiveReload,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-  useCatch,
-} from "remix"
+import {Link, Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useCatch} from "remix"
 import type {LinksFunction} from "remix"
 
 // import darkStylesUrl from "~/styles/dark.css"
@@ -53,10 +44,7 @@ export function ErrorBoundary({error}: {error: Error}) {
           <h1>There was an error</h1>
           <p>{error.message}</p>
           <hr />
-          <p>
-            Hey, developer, you should replace this with what you want your
-            users to see.
-          </p>
+          <p>Hey, developer, you should replace this with what you want your users to see.</p>
         </div>
       </Layout>
     </Document>
@@ -70,17 +58,10 @@ export function CatchBoundary() {
   let message
   switch (caught.status) {
     case 401:
-      message = (
-        <p>
-          Oops! Looks like you tried to visit a page that you do not have access
-          to.
-        </p>
-      )
+      message = <p>Oops! Looks like you tried to visit a page that you do not have access to.</p>
       break
     case 404:
-      message = (
-        <p>Oops! Looks like you tried to visit a page that does not exist.</p>
-      )
+      message = <p>Oops! Looks like you tried to visit a page that does not exist.</p>
       break
 
     default:
@@ -99,13 +80,7 @@ export function CatchBoundary() {
   )
 }
 
-function Document({
-  children,
-  title,
-}: {
-  children: React.ReactNode
-  title?: string
-}) {
+function Document({children, title}: {children: React.ReactNode; title?: string}) {
   return (
     <html lang="en">
       <head>
@@ -115,17 +90,13 @@ function Document({
         <Meta />
         <Links />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="true"
-        />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
         <link
           href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;1,300;1,400&family=Poppins:ital,wght@0,400;0,500;1,400;1,500&display=swap"
           rel="stylesheet"
         />
       </head>
-      <body className="font-body bg-slate-200 dark:bg-slate-800 dark:text-white transition-all">
+      <body className="font-body bg-slate-100 dark:bg-slate-800 dark:text-white transition-all">
         {children}
         <ScrollRestoration />
         <Scripts />
@@ -138,17 +109,11 @@ function Document({
 const Header = () => {
   const [theme, changeTheme, mounted] = useDarkMode()
   return (
-    <header className="bg-transparent py-5 mb-5 relative">
+    // 9rem
+    <header className="bg-transparent py-5 mb-5 relative border-2 border-red-500 header-height">
       <Nav />
-      <motion.button
-        type="button"
-        name="theme-button"
-        className="absolute top-5 right-10 z-20"
-        onClick={changeTheme}
-      >
-        <AnimatePresence>
-          {theme === "dark" && mounted ? <Sun /> : <Moon />}
-        </AnimatePresence>
+      <motion.button type="button" name="theme-button" className="absolute top-5 right-10 z-20" onClick={changeTheme}>
+        <AnimatePresence>{theme === "dark" && mounted ? <Sun /> : <Moon />}</AnimatePresence>
       </motion.button>
     </header>
   )
@@ -156,14 +121,14 @@ const Header = () => {
 
 const Nav = () => {
   return (
-    <nav className="p-3 flex justify-center shadow h-24">
+    <nav className="p-3 flex justify-center h-24">
       <Link to="/">
         <strong
           className={`
           transition-all 
           duration-200
           text-3xl
-          font-sans
+          font-title
           py-2
           px-3
           border-b-2
@@ -186,7 +151,7 @@ const Footer = () => (
   <footer
     className={`
       bg-transparent
-      h-24
+      footer-height
       p-2
       shadow-2xl
       `}
@@ -197,7 +162,7 @@ const Footer = () => (
           transition-all 
           duration-200
           text-3xl
-          font-sans
+          font-title
           `}
       >
         Wiki Go
@@ -209,7 +174,7 @@ function Layout({children}: {children: React.ReactNode}) {
   return (
     <Fragment>
       <Header />
-      <main className="min-h-[calc(100vh-12rem)]">{children}</main>
+      <main className="min-h-[calc(100vh-13.5rem)]">{children}</main>
       <Footer />
     </Fragment>
   )

@@ -2,6 +2,7 @@ import type {MetaFunction, LoaderFunction} from "remix"
 import {useLoaderData, json, Link} from "remix"
 import Waves from "~/components/bg.images/waves"
 import WavesUp from "~/components/bg.images/waves.up"
+import LinkButton from "~/components/common/link.button"
 
 type IndexData = {
   resources: Array<{name: string; url: string}>
@@ -73,17 +74,21 @@ const WavesWrapper = () => {
 
 const Cta = () => {
   return (
-    <div className="border w-2/5 m-auto flex flex-col jus items-center	justify-center py-5">
+    <div className="shadow-md rounded-md w-2/5 m-auto flex flex-col jus items-center	justify-center py-5">
       <h1 className="text-5xl mb-2">Wiki go</h1>
       <p>
         Your <span className="text-blue-700 font-bold dark:text-blue-400">Go</span> documentation{" "}
       </p>
       <div className="actions border w-2/5 flex justify-evenly p-2">
-        <Link to="/topics">Topics</Link>
-        <Link to="/contact">Contact</Link>
+        <LinkButton to="/topics">Topics</LinkButton>
+        <LinkButton to="/contact">Contact</LinkButton>
       </div>
     </div>
   )
+}
+
+const Page = ({children}: {children: React.ReactNode}) => {
+  return <div className="min-h-min	flex flex-col border-2 border-red-500">{children}</div>
 }
 
 // https://remix.run/guides/routing#index-routes
@@ -91,10 +96,10 @@ export default function Index() {
   const data = useLoaderData<IndexData>()
 
   return (
-    <div className="min-h-[calc(100vh-20rem)] flex flex-col">
+    <Page>
       <WavesUpWrapper />
       <Cta />
       <WavesWrapper />
-    </div>
+    </Page>
   )
 }
