@@ -1,13 +1,16 @@
 import {AnimatePresence, motion} from "framer-motion"
-import {Link} from "remix"
+import {Fragment} from "react"
+import {json, Link, LoaderFunction, useLoaderData} from "remix"
 import useDarkMode from "~/hooks/theme"
+import {mainPageRoutes} from "~/routes.data"
 import Moon from "../icons/moon"
 import Sun from "../icons/sun"
+import Spacer from "../styles/spacer"
 
 const Header = () => {
   const [theme, changeTheme, mounted] = useDarkMode()
   return (
-    <header className="bg-transparent py-5 mb-5 relative border-2 border-red-500 header-height">
+    <header className="bg-transparent py-5 mb-5 relative  header-height">
       <Nav />
       <motion.button
         type="button"
@@ -23,12 +26,14 @@ const Header = () => {
   )
 }
 
-const Nav = () => (
-  <nav className="p-3 flex justify-start h-24">
-    <div className="border border-red-300 w-2/3 m-auto py-5">
-      <Link to="/">
-        <strong
-          className={`
+const Nav = () => {
+  return (
+    <nav className="p-3 flex justify-start h-24">
+      <div className="flex w-2/3 m-auto py-5">
+        <Spacer size="2xs" unit="horizontal" />
+        <Link to="/">
+          <strong
+            className={`
           transition-all 
           w-32
           flex
@@ -46,11 +51,26 @@ const Nav = () => (
           hover:rotate-2
           
           `}
-        >
-          Wiki Go
-        </strong>
-      </Link>
-    </div>
-  </nav>
+          >
+            Wiki Go
+          </strong>
+        </Link>
+        <NavList />
+      </div>
+    </nav>
+  )
+}
+
+const NavList = () => (
+  <ul className="flex items-center flex-1 justify-end px-2">
+    {mainPageRoutes.map(({title, slug}) => (
+      <Fragment key={slug}>
+        <Spacer size="2xs" unit="horizontal" />
+        <li>
+          <Link to={slug}>{title}</Link>
+        </li>
+      </Fragment>
+    ))}
+  </ul>
 )
 export default Header
