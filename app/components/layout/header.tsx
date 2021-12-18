@@ -10,7 +10,7 @@ import Spacer from "../styles/spacer"
 const Header = () => {
   const [theme, changeTheme, mounted] = useDarkMode()
   return (
-    <header className="bg-transparent py-5 mb-5 relative  header-height">
+    <header className="bg-transparent py-5 mb-5 relative border border-red-500 h-32 ">
       <Nav />
       <motion.button
         type="button"

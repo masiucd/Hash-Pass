@@ -4,9 +4,10 @@ const Footer = () => (
   <footer
     className={`
       bg-transparent
-      footer-height
-      p-2
+      h-32
       shadow-2xl
+      border
+      border-red-500
       `}
   >
     <Link to="/">

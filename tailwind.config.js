@@ -12,11 +12,15 @@ module.exports = {
       colors: {
         transparent: "var(--color-transparent)",
       },
+
       height: theme => ({
         "header-height": "var(--header-height)",
         "footer-height": "var(--footer-height)",
         "main-height": "min-h-[calc(100vh-12rem)]",
       }),
+      screens: {
+        "xs-small": "320px",
+      },
     },
   },
   variants: {},
