@@ -1,14 +1,19 @@
-import {Link, Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useCatch} from "remix"
+import {
+  Link,
+  Links,
+  LiveReload,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+  useCatch,
+} from "remix"
 import type {LinksFunction} from "remix"
 
 // import darkStylesUrl from "~/styles/dark.css"
 import globalStylesUrl from "~/styles/global.css"
 import styles from "~/styles/tailwind.css"
-import {Fragment} from "react"
-import useDarkMode from "./hooks/theme"
-import {AnimatePresence, motion} from "framer-motion"
-import Sun from "./components/icons/sun"
-import Moon from "./components/icons/moon"
+import Layout from "./components/layout"
 
 // https://remix.run/api/app#links
 export let links: LinksFunction = () => {
@@ -44,7 +49,10 @@ export function ErrorBoundary({error}: {error: Error}) {
           <h1>There was an error</h1>
           <p>{error.message}</p>
           <hr />
-          <p>Hey, developer, you should replace this with what you want your users to see.</p>
+          <p>
+            Hey, developer, you should replace this with what you want your
+            users to see.
+          </p>
         </div>
       </Layout>
     </Document>
@@ -58,10 +66,17 @@ export function CatchBoundary() {
   let message
   switch (caught.status) {
     case 401:
-      message = <p>Oops! Looks like you tried to visit a page that you do not have access to.</p>
+      message = (
+        <p>
+          Oops! Looks like you tried to visit a page that you do not have access
+          to.
+        </p>
+      )
       break
     case 404:
-      message = <p>Oops! Looks like you tried to visit a page that does not exist.</p>
+      message = (
+        <p>Oops! Looks like you tried to visit a page that does not exist.</p>
+      )
       break
 
     default:
@@ -80,7 +95,13 @@ export function CatchBoundary() {
   )
 }
 
-function Document({children, title}: {children: React.ReactNode; title?: string}) {
+function Document({
+  children,
+  title,
+}: {
+  children: React.ReactNode
+  title?: string
+}) {
   return (
     <html lang="en">
       <head>
@@ -90,7 +111,11 @@ function Document({children, title}: {children: React.ReactNode; title?: string}
         <Meta />
         <Links />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="true"
+        />
         <link
           href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;1,300;1,400&family=Poppins:ital,wght@0,400;0,500;1,400;1,500&display=swap"
           rel="stylesheet"
@@ -103,79 +128,5 @@ function Document({children, title}: {children: React.ReactNode; title?: string}
         {process.env.NODE_ENV === "development" && <LiveReload />}
       </body>
     </html>
-  )
-}
-
-const Header = () => {
-  const [theme, changeTheme, mounted] = useDarkMode()
-  return (
-    // 9rem
-    <header className="bg-transparent py-5 mb-5 relative border-2 border-red-500 header-height">
-      <Nav />
-      <motion.button type="button" name="theme-button" className="absolute top-5 right-10 z-20" onClick={changeTheme}>
-        <AnimatePresence>{theme === "dark" && mounted ? <Sun /> : <Moon />}</AnimatePresence>
-      </motion.button>
-    </header>
-  )
-}
-
-const Nav = () => {
-  return (
-    <nav className="p-3 flex justify-center h-24">
-      <Link to="/">
-        <strong
-          className={`
-          transition-all 
-          duration-200
-          text-3xl
-          font-title
-          py-2
-          px-3
-          border-b-2
-          border-black
-          dark:border-white	
-          hover:border-b-4
-          hover:px-2
-          hover:py-1
-          hover:text-4xl
-          `}
-        >
-          Wiki Go
-        </strong>
-      </Link>
-    </nav>
-  )
-}
-
-const Footer = () => (
-  <footer
-    className={`
-      bg-transparent
-      footer-height
-      p-2
-      shadow-2xl
-      `}
-  >
-    <Link to="/">
-      <strong
-        className={`
-          transition-all 
-          duration-200
-          text-3xl
-          font-title
-          `}
-      >
-        Wiki Go
-      </strong>
-    </Link>
-  </footer>
-)
-function Layout({children}: {children: React.ReactNode}) {
-  return (
-    <Fragment>
-      <Header />
-      <main className="min-h-[calc(100vh-13.5rem)]">{children}</main>
-      <Footer />
-    </Fragment>
   )
 }
