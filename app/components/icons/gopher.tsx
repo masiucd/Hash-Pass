@@ -7,7 +7,7 @@ const Gopher = ({
   width = 50,
   height = 50,
   className = "",
-}: Props) => {
+}: Props): JSX.Element => {
   return (
     <svg
       width={width}

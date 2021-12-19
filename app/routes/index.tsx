@@ -1,6 +1,8 @@
-import type {MetaFunction, LoaderFunction} from "remix"
-import {useLoaderData, json, Link} from "remix"
+import type {LoaderFunction, MetaFunction} from "remix"
+import {json, useLoaderData} from "remix"
+
 import LinkButton from "~/components/common/link.button"
+import PageWrapper from "~/components/common/page"
 import Go from "~/components/icons/go"
 import Gopher from "~/components/icons/gopher"
 
@@ -57,22 +59,22 @@ export const meta: MetaFunction = () => {
   }
 }
 
-const GoWrapper = () => {
+const GoWrapper = (): JSX.Element => {
   return (
-    <div className="absolute bottom-10 md:bottom-0 left-0">
-      <Go className="w-60 h-60 md:w-80 md:h-80" />
+    <div className="absolute bottom-10 left-10">
+      <Go className="w-60 h-60 " />
     </div>
   )
 }
-const GopherWrapper = () => {
+const GopherWrapper = (): JSX.Element => {
   return (
-    <div className="absolute right-2 top-40 ">
-      <Gopher className="w-60 h-60 md:w-80	md:h-80" />
+    <div className="absolute right-2 top-10 ">
+      <Gopher className="w-60 h-60" />
     </div>
   )
 }
 
-const Cta = () => {
+const Cta = (): JSX.Element => {
   return (
     <div className="shadow-md rounded-md w-full md:w-2/5 m-auto flex flex-col jus items-center	justify-center py-5">
       <h1 className="text-5xl mb-2">Wiki go</h1>
@@ -89,21 +91,14 @@ const Cta = () => {
   )
 }
 
-const Page = ({children}: {children: React.ReactNode}) => (
-  <div className="flex flex-1 flex-col xs-small:min-h-[75vh] md:min-h-[55vh]">
-    {children}
-  </div>
-)
-
 // https://remix.run/guides/routing#index-routes
-export default function Index() {
-  const data = useLoaderData<IndexData>()
+export default function Index(): JSX.Element {
+  // const data = useLoaderData<IndexData>()
   return (
-    <Page>
+    <PageWrapper className="max-w-6xl  relative m-auto">
       <GoWrapper />
       <Cta />
-
       <GopherWrapper />
-    </Page>
+    </PageWrapper>
   )
 }

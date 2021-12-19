@@ -3,7 +3,7 @@ export interface PageRoute {
   slug: string
 }
 export const mainPageRoutes: Array<PageRoute> = [
-  {title: "about", slug: "/slug"},
+  {title: "about", slug: "/about"},
   {title: "topics", slug: "/topics"},
   {title: "contact", slug: "/contact"},
 ]

@@ -10,7 +10,7 @@ const Go: React.FC<Props> = ({
   width = 30,
   height = 30,
   className = "",
-}) => {
+}): JSX.Element => {
   return (
     <svg
       width={width}

@@ -7,11 +7,7 @@ interface Props {
   isOn: boolean
 }
 
-const MenuIcon: React.FC<Props> = ({
-  width = 30,
-  height = 30,
-  isOn,
-}) => (
+const MenuIcon: React.FC<Props> = ({width = 30, height = 30, isOn}) => (
   <motion.svg
     xmlns="http://www.w3.org/2000/svg"
     width={width}
@@ -21,8 +17,7 @@ const MenuIcon: React.FC<Props> = ({
     <path fill="none" d="M0 0H256V256H0z" />
     {/* MIDDLE */}
     <motion.path
-      className="z-10"
-      stroke="currentColor"
+      stroke={isOn ? "#38bdf8" : "currentColor"}
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={16}
@@ -44,7 +39,7 @@ const MenuIcon: React.FC<Props> = ({
     {/* MIDDLE */}
     {/* TOP */}
     <motion.path
-      stroke="currentColor"
+      stroke={isOn ? "#38bdf8" : "currentColor"}
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={16}
@@ -63,7 +58,7 @@ const MenuIcon: React.FC<Props> = ({
     />
     {/* TOP */}
     <motion.path
-      stroke="currentColor"
+      stroke={isOn ? "#38bdf8" : "currentColor"}
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={16}
