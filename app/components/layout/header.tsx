@@ -1,11 +1,6 @@
 import {AnimatePresence, motion} from "framer-motion"
 import {Fragment} from "react"
-import {
-  json,
-  Link,
-  LoaderFunction,
-  useLoaderData,
-} from "remix"
+import {Link} from "remix"
 import useMatchScreenSize from "~/hooks/match.screen.size"
 import useDarkMode from "~/hooks/theme"
 import useToggle from "~/hooks/toggle"
@@ -18,7 +13,7 @@ import Spacer from "../styles/spacer"
 const Header = () => {
   const [theme, changeTheme, mounted] = useDarkMode()
   return (
-    <header className="bg-transparent py-5 mb-5 relative border border-red-500 h-32 ">
+    <header className="bg-transparent py-5 mb-5 relative  h-32 ">
       <Nav />
       <motion.button
         type="button"
@@ -74,6 +69,9 @@ const Nav = () => {
           <NavIcon isOn={isOn} toggle={toggle} />
         )}
       </div>
+      <AnimatePresence>
+        {isOn && !isAboveTablet && <SideMenu />}
+      </AnimatePresence>
     </nav>
   )
 }
@@ -83,17 +81,15 @@ interface NavIconProps {
   toggle: () => void
 }
 
-const NavIcon = ({isOn, toggle}: NavIconProps) => {
-  return (
-    <button
-      type="button"
-      className="absolute top-0 right-20"
-      onClick={toggle}
-    >
-      <MenuIcon isOn={isOn} />
-    </button>
-  )
-}
+const NavIcon = ({isOn, toggle}: NavIconProps) => (
+  <button
+    type="button"
+    className="z-10 absolute top-0 right-20"
+    onClick={toggle}
+  >
+    <MenuIcon isOn={isOn} />
+  </button>
+)
 
 const NavList = () => (
   <ul className="flex items-center flex-1 justify-end px-2">
@@ -107,4 +103,32 @@ const NavList = () => (
     ))}
   </ul>
 )
+
+const SideMenu = () => {
+  return (
+    <motion.ul
+      initial={{x: -60, opacity: 0.45}}
+      animate={{x: 0, opacity: 1}}
+      exit={{x: -400, opacity: 0.35}}
+      transition={{
+        type: "spring",
+        stiffness: 200,
+        duration: 3,
+      }}
+      className="fixed bg-slate-600 text-cyan-200 dark:text-cyan-900 dark:bg-slate-400 flex flex-col items-center justify-center top-0 left-0 h-full w-full sm:w-5/12"
+    >
+      {mainPageRoutes.map(({title, slug}) => (
+        <Fragment key={slug}>
+          <Spacer size="2xs" unit="vertical" />
+          <motion.li
+            className="text-lg"
+            whileHover={{scale: 1.1}}
+          >
+            <Link to={slug}>{title}</Link>
+          </motion.li>
+        </Fragment>
+      ))}
+    </motion.ul>
+  )
+}
 export default Header

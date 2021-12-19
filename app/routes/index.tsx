@@ -1,9 +1,8 @@
-import {Fragment} from "react"
 import type {MetaFunction, LoaderFunction} from "remix"
 import {useLoaderData, json, Link} from "remix"
-import Waves from "~/components/bg.images/waves"
-import WavesUp from "~/components/bg.images/waves.up"
 import LinkButton from "~/components/common/link.button"
+import Go from "~/components/icons/go"
+import Gopher from "~/components/icons/gopher"
 
 type IndexData = {
   resources: Array<{name: string; url: string}>
@@ -58,17 +57,17 @@ export const meta: MetaFunction = () => {
   }
 }
 
-const WavesUpWrapper = () => {
+const GoWrapper = () => {
   return (
-    <div className="max-h-[20vh]">
-      <WavesUp />
+    <div className="absolute bottom-10 md:bottom-0 left-0">
+      <Go className="w-60 h-60 md:w-80 md:h-80" />
     </div>
   )
 }
-const WavesWrapper = () => {
+const GopherWrapper = () => {
   return (
-    <div className="max-h-[20vh]">
-      <Waves />
+    <div className="absolute right-2 top-40 ">
+      <Gopher className="w-60 h-60 md:w-80	md:h-80" />
     </div>
   )
 }
@@ -93,7 +92,7 @@ const Cta = () => {
 }
 
 const Page = ({children}: {children: React.ReactNode}) => (
-  <div className="border flex flex-1 flex-col xs-small:min-h-[75vh] md:min-h-[55vh]">
+  <div className="flex flex-1 flex-col xs-small:min-h-[75vh] md:min-h-[55vh]">
     {children}
   </div>
 )
@@ -103,9 +102,10 @@ export default function Index() {
   const data = useLoaderData<IndexData>()
   return (
     <Page>
-      {/* <WavesUpWrapper /> */}
+      <GoWrapper />
       <Cta />
-      {/* <WavesWrapper /> */}
+
+      <GopherWrapper />
     </Page>
   )
 }

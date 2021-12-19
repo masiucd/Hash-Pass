@@ -6,8 +6,6 @@ const Footer = () => (
       bg-transparent
       h-32
       shadow-2xl
-      border
-      border-red-500
       `}
   >
     <Link to="/">
