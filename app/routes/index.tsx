@@ -60,14 +60,14 @@ export const meta: MetaFunction = () => {
 
 const WavesUpWrapper = () => {
   return (
-    <div>
+    <div className="max-h-[20vh]">
       <WavesUp />
     </div>
   )
 }
 const WavesWrapper = () => {
   return (
-    <div className="mt-auto">
+    <div className="max-h-[20vh]">
       <Waves />
     </div>
   )
@@ -79,7 +79,9 @@ const Cta = () => {
       <h1 className="text-5xl mb-2">Wiki go</h1>
       <p>
         Your{" "}
-        <span className="text-blue-700 font-bold dark:text-blue-400">Go</span>{" "}
+        <span className="text-blue-700 font-bold dark:text-blue-400">
+          Go
+        </span>{" "}
         documentation{" "}
       </p>
       <div className="actions w-2/5 flex justify-evenly p-2">
@@ -91,16 +93,14 @@ const Cta = () => {
 }
 
 const Page = ({children}: {children: React.ReactNode}) => (
-  //
-  <div className="border  flex flex-1 flex-col border-red-600 xs-small:min-h-[75vh] md:min-h-[55vh]">
+  <div className="border flex flex-1 flex-col xs-small:min-h-[75vh] md:min-h-[55vh]">
     {children}
   </div>
 )
 
 // https://remix.run/guides/routing#index-routes
 export default function Index() {
-  // const data = useLoaderData<IndexData>()
-
+  const data = useLoaderData<IndexData>()
   return (
     <Page>
       {/* <WavesUpWrapper /> */}

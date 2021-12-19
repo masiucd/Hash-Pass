@@ -1,8 +1,16 @@
 import {AnimatePresence, motion} from "framer-motion"
 import {Fragment} from "react"
-import {json, Link, LoaderFunction, useLoaderData} from "remix"
+import {
+  json,
+  Link,
+  LoaderFunction,
+  useLoaderData,
+} from "remix"
+import useMatchScreenSize from "~/hooks/match.screen.size"
 import useDarkMode from "~/hooks/theme"
+import useToggle from "~/hooks/toggle"
 import {mainPageRoutes} from "~/routes.data"
+import MenuIcon from "../icons/menu.icon"
 import Moon from "../icons/moon"
 import Sun from "../icons/sun"
 import Spacer from "../styles/spacer"
@@ -27,8 +35,13 @@ const Header = () => {
 }
 
 const Nav = () => {
+  const [isOn, {toggle}] = useToggle()
+  const isAboveTablet = useMatchScreenSize(
+    "(min-width: 768px)"
+  )
+
   return (
-    <nav className="p-3 flex justify-start h-24">
+    <nav className="p-3 flex justify-start h-24 relative">
       <div className="flex w-2/3 m-auto py-5">
         <Spacer size="2xs" unit="horizontal" />
         <Link to="/">
@@ -55,9 +68,30 @@ const Nav = () => {
             Wiki Go
           </strong>
         </Link>
-        <NavList />
+        {isAboveTablet ? (
+          <NavList />
+        ) : (
+          <NavIcon isOn={isOn} toggle={toggle} />
+        )}
       </div>
     </nav>
+  )
+}
+
+interface NavIconProps {
+  isOn: boolean
+  toggle: () => void
+}
+
+const NavIcon = ({isOn, toggle}: NavIconProps) => {
+  return (
+    <button
+      type="button"
+      className="absolute top-0 right-20"
+      onClick={toggle}
+    >
+      <MenuIcon isOn={isOn} />
+    </button>
   )
 }
 

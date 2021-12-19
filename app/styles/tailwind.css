@@ -462,8 +462,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   right: 2.5rem;
 }
 
+.top-0 {
+  top: 0px;
+}
+
+.right-20 {
+  right: 5rem;
+}
+
 .z-20 {
   z-index: 20;
+}
+
+.z-10 {
+  z-index: 10;
 }
 
 .m-auto {
@@ -473,10 +485,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
-}
-
-.mt-auto {
-  margin-top: auto;
 }
 
 .mb-2 {
@@ -519,24 +527,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 14rem;
 }
 
-.min-h-\[calc\(100vh-17\.5rem\)\] {
-  min-height: calc(100vh - 17.5rem);
+.max-h-\[20vh\] {
+  max-height: 20vh;
 }
 
 .min-h-\[calc\(100vh-16rem\)\] {
   min-height: calc(100vh - 16rem);
 }
 
-.min-h-\[10vh\] {
-  min-height: 10vh;
-}
-
-.min-h-\[10rem\] {
-  min-height: 10rem;
-}
-
-.min-h-\[calc\(10vh-17\.5rem\)\] {
-  min-height: calc(10vh - 17.5rem);
+.w-full {
+  width: 100%;
 }
 
 .w-2\/5 {
@@ -569,10 +569,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-56 {
   width: 14rem;
-}
-
-.w-full {
-  width: 100%;
 }
 
 .min-w-fit {
@@ -623,11 +619,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .border-b-2 {
   border-bottom-width: 2px;
-}
-
-.border-red-600 {
-  --tw-border-opacity: 1;
-  border-color: rgb(220 38 38 / var(--tw-border-opacity));
 }
 
 .border-blue-500 {
@@ -814,28 +805,8 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 @media (min-width: 768px) {
-  .md\:min-h-\[65vh\] {
-    min-height: 65vh;
-  }
-
   .md\:min-h-\[55vh\] {
     min-height: 55vh;
-  }
-
-  .md\:min-h-\[25vh\] {
-    min-height: 25vh;
-  }
-
-  .md\:min-h-\[125vh\] {
-    min-height: 125vh;
-  }
-
-  .md\:min-h-\[515vh\] {
-    min-height: 515vh;
-  }
-
-  .md\:min-h-\[15vh\] {
-    min-height: 15vh;
   }
 
   .md\:w-2\/5 {
@@ -868,22 +839,6 @@ Ensure the default browser behavior of the `hidden` attribute.
     height: 16rem;
   }
 
-  .lg\:min-h-\[calc\(10vh-17\.5rem\)\] {
-    min-height: calc(10vh - 17.5rem);
-  }
-
-  .lg\:min-h-\[calc\(10vh-37\.5rem\)\] {
-    min-height: calc(10vh - 37.5rem);
-  }
-
-  .lg\:min-h-\[2vh\] {
-    min-height: 2vh;
-  }
-
-  .lg\:min-h-0 {
-    min-height: 0px;
-  }
-
   .lg\:w-8 {
     width: 2rem;
   }
@@ -912,9 +867,5 @@ Ensure the default browser behavior of the `hidden` attribute.
 @media (min-width: 320px) {
   .xs-small\:min-h-\[75vh\] {
     min-height: 75vh;
-  }
-
-  .xs-small\:min-h-\[15vh\] {
-    min-height: 15vh;
   }
 }
