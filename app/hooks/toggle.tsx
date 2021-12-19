@@ -4,6 +4,7 @@ interface Handlers {
   toggle: () => void
   toTrue: () => void
   toFalse: () => void
+  reset: () => void
 }
 
 type UseToggle = [boolean, Handlers]
@@ -11,8 +12,8 @@ type UseToggle = [boolean, Handlers]
 const useToggle = (initialState = false): UseToggle => {
   const [state, setState] = useState(initialState)
 
-  const fns = useMemo(() => {
-    return {
+  const fns = useMemo(
+    () => ({
       toggle: (): void => {
         setState(prev => !prev)
       },
@@ -22,8 +23,12 @@ const useToggle = (initialState = false): UseToggle => {
       toFalse: (): void => {
         setState(false)
       },
-    }
-  }, [])
+      reset: (): void => {
+        setState(initialState)
+      },
+    }),
+    [initialState]
+  )
 
   return [state, fns]
 }

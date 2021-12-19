@@ -78,9 +78,7 @@ const Cta = () => {
       <h1 className="text-5xl mb-2">Wiki go</h1>
       <p>
         Your{" "}
-        <span className="text-blue-700 font-bold dark:text-blue-400">
-          Go
-        </span>{" "}
+        <span className="text-blue-700 font-bold dark:text-blue-400">Go</span>{" "}
         documentation{" "}
       </p>
       <div className="actions w-2/5 flex justify-evenly p-2">
