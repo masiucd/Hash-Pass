@@ -54,8 +54,8 @@ export const loader: LoaderFunction = () => {
 // https://remix.run/api/conventions#meta
 export const meta: MetaFunction = () => {
   return {
-    title: "Remix Starter",
-    description: "Welcome to remix!",
+    title: "Wiki go",
+    description: "Your Go documentation",
   }
 }
 
@@ -95,7 +95,7 @@ const Cta = (): JSX.Element => {
 export default function Index(): JSX.Element {
   // const data = useLoaderData<IndexData>()
   return (
-    <PageWrapper className="max-w-6xl  relative m-auto">
+    <PageWrapper className="max-w-6xl relative m-auto">
       <GoWrapper />
       <Cta />
       <GopherWrapper />
