@@ -484,48 +484,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 6rem;
 }
 
-.h-36 {
-  height: 9rem;
-}
-
-.min-h-\[calc\(100vh-12rem\)\] {
-  min-height: calc(100vh - 12rem);
-}
-
-.min-h-\[calc\(100vh-10rem\)\] {
-  min-height: calc(100vh - 10rem);
-}
-
-.min-h-\[calc\(100vh-18rem\)\] {
-  min-height: calc(100vh - 18rem);
-}
-
-.min-h-\[calc\(100vh-1rem\)\] {
-  min-height: calc(100vh - 1rem);
-}
-
-.min-h-fit {
-  min-height: -webkit-fit-content;
-  min-height: -moz-fit-content;
-  min-height: fit-content;
-}
-
-.min-h-\[calc\(100vh-7rem\)\] {
-  min-height: calc(100vh - 7rem);
-}
-
-.min-h-\[calc\(100vh-14rem\)\] {
-  min-height: calc(100vh - 14rem);
-}
-
 .min-h-\[calc\(100vh-13\.5rem\)\] {
   min-height: calc(100vh - 13.5rem);
-}
-
-.min-h-max {
-  min-height: -webkit-max-content;
-  min-height: -moz-max-content;
-  min-height: max-content;
 }
 
 .min-h-min {
