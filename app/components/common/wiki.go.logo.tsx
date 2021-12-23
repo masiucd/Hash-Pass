@@ -1,7 +1,5 @@
 import {Link} from "remix"
 
-import Go from "../icons/go"
-
 const WikiGoLogo = (): JSX.Element => {
   return (
     <Link to="/">
@@ -24,8 +22,9 @@ const WikiGoLogo = (): JSX.Element => {
         items-center"
       >
         Wiki{" "}
-        <span>
-          <Go width={50} height={50} />
+        <span className="italic inline-block text-cyan-600 dark:text-cyan-400	">
+          {" "}
+          Go
         </span>
       </strong>
     </Link>

@@ -18,32 +18,28 @@ export type PostMarkdownAttributes = {
 }
 
 export const postsPath = path.join(__dirname, "..", "posts")
+
 function isValidPostAttributes(
   attributes: any
 ): attributes is PostMarkdownAttributes {
   return attributes?.title
 }
 
-export const getPosts = async (): Promise<any> => {
+export async function getPosts(): Promise<PostFrontMatter[]> {
   const dir = await fs.readdir(postsPath)
-
   return Promise.all(
     dir.map(async filename => {
       const file = await fs.readFile(path.join(postsPath, filename))
       const {attributes} = parseFrontMatter<PostFrontMatter>(file.toString())
-
-      invariant(
-        isValidPostAttributes(attributes),
-        `${filename} has bad meta data!`
-      )
+      invariant(isValidPostAttributes(attributes))
       return {
-        title: attributes.title,
         slug: filename.replace(/\.md$/, ""),
-        description: "string",
-        tags: [""],
-        category: "",
-        created: "",
-        updated: "",
+        title: attributes.title,
+        description: attributes.description,
+        tags: attributes.tags,
+        category: attributes.category,
+        created: attributes.created,
+        updated: attributes.updated,
       }
     })
   )
