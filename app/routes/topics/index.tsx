@@ -30,33 +30,42 @@ export const meta: MetaFunction = () => ({
   description: "Choose yur topic and post",
 })
 
+const Categories = ({topics}: {topics: {title: string}[]}): JSX.Element => (
+  <div className="shadow h-full bg-slate-700 rounded-l-md">
+    <ul className="py-2 px-4 overflow-y-auto rounded-l-md">
+      {topics.map(({title}) => (
+        <Fragment key={title}>
+          <Spacer size="2xs" unit="vertical" />
+          <motion.li
+            whileHover={{scale: 1.025}}
+            className="text-2xl cursor-pointer text-cyan-200 "
+          >
+            {title}
+          </motion.li>
+        </Fragment>
+      ))}
+    </ul>
+  </div>
+)
+
+const Posts = ({posts}: {posts: Array<PostFrontMatter>}): JSX.Element => (
+  <div className="shadow col-span-3 rounded-r-md dark:border-slate-100 flex flex-col  items-center">
+    <ul className="rounded-md w-full  lg:w-3/5 ">
+      {posts.map(post => (
+        <PostBox key={post.slug} post={post} />
+      ))}
+    </ul>
+  </div>
+)
+
 const Topics = (): JSX.Element => {
   const {posts, topics} = useLoaderData<Data>()
-
   return (
     <PageWrapper className="max-w-7xl relative m-auto">
       <section className="flex flex-col  md:grid md:grid-cols-4 mt-10">
-        <div className="border h-full bg-slate-700 rounded-l-md">
-          <ul className="py-2 px-4 overflow-y-auto rounded-l-md">
-            {topics.map(({title}) => (
-              <Fragment key={title}>
-                <Spacer size="2xs" unit="vertical" />
-                <motion.li
-                  whileHover={{scale: 1.025}}
-                  className="text-2xl cursor-pointer text-cyan-200 "
-                >
-                  {title}
-                </motion.li>
-              </Fragment>
-            ))}
-          </ul>
-        </div>
-        <div className="border col-span-3 rounded-r-md dark:border-slate-100 flex flex-col  items-center">
-          <ul className="rounded-md w-full  lg:w-3/5 border ">
-            {posts.map(post => (
-              <PostBox key={post.slug} post={post} />
-            ))}
-          </ul>
+        <Categories topics={topics} />
+        <div className="shadow col-span-3 rounded-r-md dark:border-slate-100 flex flex-col  items-center">
+          <Posts posts={posts} />
         </div>
       </section>
     </PageWrapper>
