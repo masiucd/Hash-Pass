@@ -1,5 +1,6 @@
 import parseFrontMatter from "front-matter"
 import fs from "fs/promises"
+import {marked} from "marked"
 import path from "path"
 import invariant from "tiny-invariant"
 
@@ -13,6 +14,12 @@ export interface PostFrontMatter {
   slug: string
 }
 
+export interface Post {
+  slug: string
+  title: string
+  html: string
+}
+
 export type PostMarkdownAttributes = {
   title: string
 }
@@ -20,7 +27,7 @@ export type PostMarkdownAttributes = {
 export const postsPath = path.join(__dirname, "..", "posts")
 
 function isValidPostAttributes(
-  attributes: any
+  attributes: Record<string, any>
 ): attributes is PostMarkdownAttributes {
   return attributes?.title
 }
@@ -43,4 +50,16 @@ export async function getPosts(): Promise<PostFrontMatter[]> {
       }
     })
   )
+}
+
+export const getPost = async (slug: string): Promise<Post> => {
+  const filepath = path.join(postsPath, slug + ".md")
+  const file = await fs.readFile(filepath)
+  const {attributes, body} = parseFrontMatter<PostFrontMatter>(file.toString())
+  invariant(
+    isValidPostAttributes(attributes),
+    `Post ${filepath} is missing attributes`
+  )
+  const html = marked(body)
+  return {slug, title: attributes.title, html}
 }

@@ -7,7 +7,6 @@ import PageWrapper from "~/components/common/page"
 import PostBox from "~/components/post/post.box"
 import Spacer from "~/components/styles/spacer"
 import {getPosts, PostFrontMatter} from "~/post"
-import topics from "~/static/topics.json"
 
 interface Topic {
   title: string
@@ -18,22 +17,19 @@ interface Data {
   posts: Array<PostFrontMatter>
 }
 
-export const loader: LoaderFunction = async () => {
-  return {
-    posts: await getPosts(),
-    topics,
-  }
-}
+export const loader: LoaderFunction = async () => ({
+  posts: await getPosts(),
+})
 
 export const meta: MetaFunction = () => ({
   title: "Wiki Go topics",
   description: "Choose yur topic and post",
 })
 
-const Categories = ({topics}: {topics: {title: string}[]}): JSX.Element => (
+const Categories = ({topics}: {topics: string[]}): JSX.Element => (
   <div className="shadow h-full bg-slate-700 rounded-l-md">
     <ul className="py-2 px-4 overflow-y-auto rounded-l-md">
-      {topics.map(({title}) => (
+      {topics.map(title => (
         <Fragment key={title}>
           <Spacer size="2xs" unit="vertical" />
           <motion.li
@@ -49,8 +45,8 @@ const Categories = ({topics}: {topics: {title: string}[]}): JSX.Element => (
 )
 
 const Posts = ({posts}: {posts: Array<PostFrontMatter>}): JSX.Element => (
-  <div className="shadow col-span-3 rounded-r-md dark:border-slate-100 flex flex-col  items-center">
-    <ul className="rounded-md w-full  lg:w-3/5 ">
+  <div className="shadow w-full col-span-3 rounded-r-md dark:border-slate-100 flex flex-col  items-center">
+    <ul className="rounded-md w-full md:w-4/5 ">
       {posts.map(post => (
         <PostBox key={post.slug} post={post} />
       ))}
@@ -59,12 +55,13 @@ const Posts = ({posts}: {posts: Array<PostFrontMatter>}): JSX.Element => (
 )
 
 const Topics = (): JSX.Element => {
-  const {posts, topics} = useLoaderData<Data>()
+  const {posts} = useLoaderData<Data>()
+  const uniqCategories = [...new Set(posts.map(p => p.tags.map(p => p)).flat())]
   return (
-    <PageWrapper className="max-w-7xl relative m-auto">
+    <PageWrapper className="max-w-7xl relative m-auto p-2">
       <section className="flex flex-col  md:grid md:grid-cols-4 mt-10">
-        <Categories topics={topics} />
-        <div className="shadow col-span-3 rounded-r-md dark:border-slate-100 flex flex-col  items-center">
+        <Categories topics={uniqCategories} />
+        <div className="col-span-3 rounded-r-md dark:border-slate-100 flex flex-col  items-center">
           <Posts posts={posts} />
         </div>
       </section>

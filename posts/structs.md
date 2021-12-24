@@ -1,11 +1,11 @@
 ---
-title: variables
-description: variables in Go
-tags: [basics, syntax]
+title: Structs
+description: structs in Go
+tags: [basics, structs]
 category: basics
-slug: vars
-created: "2020-12-19"
-updated: "2020-12-20"
+slug: structs
+created: "2020-12-21"
+updated: "2020-12-21"
 ---
 
 # Variables

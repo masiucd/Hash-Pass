@@ -1,4 +1,4 @@
-import {format} from "date-fns"
+import {format, parseISO} from "date-fns"
 
 import {PostFrontMatter} from "~/post"
 
@@ -8,14 +8,8 @@ interface Props {
   post: PostFrontMatter
 }
 
-const formatDate = (dateString: string, formatType = "yyyy MMM co"): string => {
-  const [year, month, day] = dateString.split("-")
-  return format(
-    new Date(parseInt(year, 10), parseInt(month, 10), parseInt(day, 10)),
-
-    formatType
-  )
-}
+const formatDate = (dateString: string, formatType = "yy MMM do"): string =>
+  format(parseISO(dateString), formatType)
 
 const Capture = ({children}: {children: React.ReactNode}): JSX.Element => (
   <strong className="text-slate-900 dark:text-cyan-200 italic ">
@@ -61,16 +55,18 @@ const LowerSection = ({
   description: string
   slug: string
 }): JSX.Element => (
-  <div className="flex items-center ">
-    <p className="grow-[2] flex-wrap">
+  <div className="flex items-center">
+    <p className="grow-[3] flex-wrap">
       <Capture>Description:</Capture> {description}
     </p>
-    <LinkButton
-      to={`/topics/${slug}`}
-      className="dark:border-cyan-500 dark:hover:border-slate-100 dark:hover:bg-cyan-400  dark:hover:text-cyan-900 text-xs"
-    >
-      Read more
-    </LinkButton>
+    <div className="max-w-32 px-1">
+      <LinkButton
+        to={`/topics/${slug}`}
+        className=" dark:border-cyan-500 dark:hover:border-slate-100 dark:hover:bg-cyan-400  dark:hover:text-cyan-900 text-xs"
+      >
+        Read more
+      </LinkButton>
+    </div>
   </div>
 )
 
