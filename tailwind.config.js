@@ -13,6 +13,10 @@ module.exports = {
       body: ["Poppins", "sans-serif", ...defaultTheme.fontFamily.sans],
     },
     extend: {
+      flexGrow: {
+        2: 2,
+        3: 3,
+      },
       colors: {
         transparent: "var(--color-transparent)",
       },

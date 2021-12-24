@@ -17,49 +17,70 @@ const formatDate = (dateString: string, formatType = "yyyy MMM co"): string => {
   )
 }
 
-const Capture = ({children}: {children: React.ReactNode}): JSX.Element => {
-  return (
-    <strong className="text-slate-900 dark:text-cyan-200 border-b  dark:border-cyan-200 border-cyan-600">
-      {children}
-    </strong>
-  )
-}
+const Capture = ({children}: {children: React.ReactNode}): JSX.Element => (
+  <strong className="text-slate-900 dark:text-cyan-200 italic ">
+    {children}
+  </strong>
+)
+
+const UpperSection = ({
+  title,
+  tags,
+  updated,
+}: {
+  title: string
+  tags: string[]
+  updated: string
+}): JSX.Element => (
+  <div className="flex flex-col sm:flex-row mb-5 items-center py-2">
+    <p className="mr-3">
+      <Capture>Title:</Capture> {title}
+    </p>
+    <p>
+      <Capture>Updated: </Capture>
+      {formatDate(updated)}
+    </p>
+
+    <ul className="sm:ml-auto  my-2 sm:my-0  sm:w-2/5  sm:justify-end  w-full justify-center flex gap-2 flex-wrap">
+      {tags.map(tag => (
+        <li
+          key={tag}
+          className="text-sm dark:bg-cyan-300 text-slate-900  rounded-md p-1"
+        >
+          {tag}
+        </li>
+      ))}
+    </ul>
+  </div>
+)
+
+const LowerSection = ({
+  slug,
+  description,
+}: {
+  description: string
+  slug: string
+}): JSX.Element => (
+  <div className="flex items-center ">
+    <p className="grow-[2] flex-wrap">
+      <Capture>Description:</Capture> {description}
+    </p>
+    <LinkButton
+      to={slug}
+      className="dark:border-cyan-500 dark:hover:border-slate-100 dark:hover:bg-cyan-400  dark:hover:text-cyan-900 text-xs"
+    >
+      Read more
+    </LinkButton>
+  </div>
+)
 
 const PostBox = ({post}: Props): JSX.Element => (
-  <li key={post.slug} className="p-2 min-w-max shadow-md rounded-sm my-3">
-    <div className="flex mb-5 items-center py-2">
-      <p className="mr-3">
-        <Capture>Title:</Capture> {post.title}
-      </p>
-
-      <p>
-        <Capture>Updated: </Capture>
-        {formatDate(post.updated)}
-      </p>
-
-      <ul className="ml-auto w-2/5 flex gap-2 flex-wrap justify-end ">
-        {post.tags.map(tag => (
-          <li
-            key={tag}
-            className="text-sm dark:bg-cyan-300 text-slate-900  rounded-md p-1"
-          >
-            {tag}
-          </li>
-        ))}
-      </ul>
-    </div>
-
-    <div className="flex items-center">
-      <p className="grow flex-wrap">
-        <Capture>Description:</Capture> {post.description}
-      </p>
-      <LinkButton
-        to={post.slug}
-        className="w-1/4 dark:border-cyan-500 dark:hover:border-slate-100"
-      >
-        Read more
-      </LinkButton>
-    </div>
+  <li
+    key={post.slug}
+    className="flex flex-col flex-wrap p-2 min-w-max shadow-md rounded-sm my-3"
+  >
+    <UpperSection tags={post.tags} updated={post.updated} title={post.title} />
+    <LowerSection slug={post.slug} description={post.description} />
   </li>
 )
 

@@ -7,6 +7,7 @@ import PageWrapper from "~/components/common/page"
 import PostBox from "~/components/post/post.box"
 import Spacer from "~/components/styles/spacer"
 import {getPosts, PostFrontMatter} from "~/post"
+import topics from "~/static/topics.json"
 
 interface Topic {
   title: string
@@ -20,32 +21,7 @@ interface Data {
 export const loader: LoaderFunction = async () => {
   return {
     posts: await getPosts(),
-    topics: [
-      {
-        title: "Basics",
-        route: "",
-      },
-      {
-        title: "Slices",
-        route: "",
-      },
-      {
-        title: "Maps",
-        route: "",
-      },
-      {
-        title: "Structs",
-        route: "",
-      },
-      {
-        title: "Concurrency",
-        route: "",
-      },
-      {
-        title: "Tips and trics",
-        route: "",
-      },
-    ],
+    topics,
   }
 }
 
@@ -59,9 +35,9 @@ const Topics = (): JSX.Element => {
 
   return (
     <PageWrapper className="max-w-7xl relative m-auto">
-      <section className="grid grid-cols-4 mt-10 ">
-        <div className="border h-full bg-slate-700 rounded-md">
-          <ul className="py-2 px-4 overflow-y-auto rounded-md">
+      <section className="flex flex-col  md:grid md:grid-cols-4 mt-10">
+        <div className="border h-full bg-slate-700 rounded-l-md">
+          <ul className="py-2 px-4 overflow-y-auto rounded-l-md">
             {topics.map(({title}) => (
               <Fragment key={title}>
                 <Spacer size="2xs" unit="vertical" />
@@ -75,8 +51,8 @@ const Topics = (): JSX.Element => {
             ))}
           </ul>
         </div>
-        <div className="border col-span-3 rounded-md dark:border-slate-100 flex flex-col  items-center">
-          <ul className="rounded-md  w-3/5 ">
+        <div className="border col-span-3 rounded-r-md dark:border-slate-100 flex flex-col  items-center">
+          <ul className="rounded-md w-full  lg:w-3/5 border ">
             {posts.map(post => (
               <PostBox key={post.slug} post={post} />
             ))}
