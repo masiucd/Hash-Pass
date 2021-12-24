@@ -66,7 +66,7 @@ const LowerSection = ({
       <Capture>Description:</Capture> {description}
     </p>
     <LinkButton
-      to={slug}
+      to={`/topics/${slug}`}
       className="dark:border-cyan-500 dark:hover:border-slate-100 dark:hover:bg-cyan-400  dark:hover:text-cyan-900 text-xs"
     >
       Read more
