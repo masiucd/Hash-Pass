@@ -1,30 +1,23 @@
-use std::io;
-
 fn main() {
-    let months = [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December",
-    ];
+    println!("{:?}", longest_word("WARSZAWA Hello World "));
+}
 
-    let mut index = String::new();
-    io::stdin()
-        .read_line(&mut index)
-        .expect("Failed to read line");
+#[test]
+fn test_longest_word() {
+    assert_eq!(longest_word("Legia Warszawa CWKS"), "Warszawa");
+    assert_eq!(longest_word("IFK Goteborg 1904"), "Goteborg");
+    assert_eq!(longest_word(""), "");
+}
 
-    let index: usize = index.trim().parse().expect("Index x is not a number");
-    if index > 12 {
-        println!("Invalid index, out of range!!!");
-    } else {
-        println!("{}", months[index - 1]);
+fn longest_word(input: &str) -> &str {
+    let words = input.split(' ').collect::<Vec<&str>>();
+    let mut longest = words[0].len() as u32;
+    let mut longest_word = words[0];
+    for word in words.iter() {
+        if word.len() as u32 > longest {
+            longest = word.len() as u32;
+            longest_word = word;
+        }
     }
+    longest_word
 }
