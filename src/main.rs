@@ -1,49 +1,25 @@
-use std::fs;
-
-use serde::{Deserialize, Serialize};
-
-#[derive(Serialize, Deserialize, Debug)]
-struct Point {
-    x: i32,
-    y: i32,
-}
-
-#[derive(Serialize, Deserialize, Debug)]
-struct Person {
-    name: String,
-    gender: String,
-    age: i32,
-}
-
+mod json_data;
 fn main() {
-    let point = Point { x: 1, y: 2 };
+    let list = json_data::get_people_list();
+    let last_person = json_data::last_person(list);
+    println!("Last person: {:?}", last_person);
 
-    let json_data = fs::read_to_string("./data.json").unwrap();
-    let deserialized_json_data: Vec<Person> = serde_json::from_str(&json_data).unwrap();
+    // let point = Point { x: 1, y: 2 };
 
-    for person in &deserialized_json_data {
-        println!("{:?}", person);
-    }
+    // let json_data = fs::read_to_string("./data.json").unwrap();
+    // let deserialized_json_data: Vec<Person> = serde_json::from_str(&json_data).unwrap();
 
-    let serialized = serde_json::to_string(&point).unwrap();
+    // for person in &deserialized_json_data {
+    //     println!("{:?}", person);
+    // }
 
-    println!("serialized = {}", serialized);
+    // let serialized = serde_json::to_string(&point).unwrap();
 
-    let deserialized: Point = serde_json::from_str(&serialized).unwrap();
-    println!("deserialized = {:?}", deserialized);
+    // println!("serialized = {}", serialized);
 
-    let last = last_person(deserialized_json_data);
-    println!("last = {:?}", last);
-}
+    // let deserialized: Point = serde_json::from_str(&serialized).unwrap();
+    // println!("deserialized = {:?}", deserialized);
 
-fn last_person(list: Vec<Person>) -> Person {
-    let mut last_person = Person {
-        name: "".to_string(),
-        age: 0,
-        gender: "male".to_string(),
-    };
-    for p in list {
-        last_person = p;
-    }
-    last_person
+    // let last = last_person(deserialized_json_data);
+    // println!("last = {:?}", last);
 }
