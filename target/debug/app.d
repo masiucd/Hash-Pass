@@ -1,1 +1,1 @@
-/Users/masiuciszek/projects/good-stuff/rust-stuff/target/debug/app: /Users/masiuciszek/projects/good-stuff/rust-stuff/src/main.rs
+/Users/masiuciszek/projects/good-stuff/rust-stuff/target/debug/app: /Users/masiuciszek/projects/good-stuff/rust-stuff/src/double_user_input.rs /Users/masiuciszek/projects/good-stuff/rust-stuff/src/main.rs
