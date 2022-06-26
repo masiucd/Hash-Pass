@@ -1,26 +1,13 @@
 fn main() {
-  let x = 'a' as u32;
-  let x = 'z' as u32;
-  let x = solution("crazy".to_string());
+  println!("{}", solution(String::from("a1"), String::from("b2")));
+  let x = char::from('a');
+  let x = 'a' as u8;
+  let x = '1' as u8;
   println!("{}", x);
 }
 
-#[test]
-fn test_solution() {
-  assert_eq!(solution("crazy".to_string()), "dsbaz".to_string());
-  assert_eq!(solution("z".to_string()), "a".to_string());
-  assert_eq!(solution("aaaabbbccd".to_string()), "bbbbcccdde".to_string());
-}
-
-fn solution(input_string: String) -> String {
-  input_string
-    .bytes()
-    .map(|b| {
-      if b + 1 > 122 {
-        97 as char
-      } else {
-        (b + 1) as char
-      }
-    })
-    .collect()
+fn solution(cell1: String, cell2: String) -> bool {
+  let sum1: u8 = cell1.chars().map(|c| c as u8).sum();
+  let sum2: u8 = cell2.chars().map(|c| c as u8).sum();
+  sum1 % 2 == sum2 % 2
 }
