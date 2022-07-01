@@ -1,13 +1,22 @@
 fn main() {
-  println!("{}", solution(String::from("a1"), String::from("b2")));
-  let x = char::from('a');
-  let x = 'a' as u8;
-  let x = '1' as u8;
-  println!("{}", x);
+  let xs = vec![2, 4, 7];
+  println!("{}", solution(xs));
 }
 
-fn solution(cell1: String, cell2: String) -> bool {
-  let sum1: u8 = cell1.chars().map(|c| c as u8).sum();
-  let sum2: u8 = cell2.chars().map(|c| c as u8).sum();
-  sum1 % 2 == sum2 % 2
+#[test]
+fn test_solution() {
+  assert_eq!(solution(vec![2, 4, 7]), 4);
+  assert_eq!(solution(vec![1, 1, 3, 4]), 1);
+  assert_eq!(
+    solution(vec![
+      -10, -10, -10, -10, -10, -9, -9, -9, -8, -8, -7, -6, -5, -4, -3, -2, -1, 0, 0, 0, 0, 1, 2, 3,
+      4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28,
+      29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50
+    ]),
+    15
+  );
+}
+
+fn solution(a: Vec<i32>) -> i32 {
+  a[(a.len() - 1) / 2]
 }
