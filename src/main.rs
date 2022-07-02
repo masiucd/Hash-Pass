@@ -1,8 +1,8 @@
 mod helpers;
 mod math;
+mod models;
+use models::dog;
 fn main() {
-  let res = math::add(1);
-  let res = helpers::strings::append_to("Hello ".to_string(), "World!");
-  let res = helpers::helper_mod::say_hello();
-  println!("{}", res);
+  models::user::print_user();
+  dog::doggy()
 }
