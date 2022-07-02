@@ -1,1 +1,1 @@
-/Users/masiuciszek/projects/good-stuff/rust-stuff/target/debug/app: /Users/masiuciszek/projects/good-stuff/rust-stuff/src/main.rs
+/Users/masiuciszek/projects/good-stuff/rust-stuff/target/debug/app: /Users/masiuciszek/projects/good-stuff/rust-stuff/src/helpers/mod.rs /Users/masiuciszek/projects/good-stuff/rust-stuff/src/helpers/strings.rs /Users/masiuciszek/projects/good-stuff/rust-stuff/src/main.rs /Users/masiuciszek/projects/good-stuff/rust-stuff/src/math.rs

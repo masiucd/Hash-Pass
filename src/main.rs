@@ -1,22 +1,8 @@
+mod helpers;
+mod math;
 fn main() {
-  let xs = vec![2, 4, 7];
-  println!("{}", solution(xs));
-}
-
-#[test]
-fn test_solution() {
-  assert_eq!(solution(vec![2, 4, 7]), 4);
-  assert_eq!(solution(vec![1, 1, 3, 4]), 1);
-  assert_eq!(
-    solution(vec![
-      -10, -10, -10, -10, -10, -9, -9, -9, -8, -8, -7, -6, -5, -4, -3, -2, -1, 0, 0, 0, 0, 1, 2, 3,
-      4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28,
-      29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50
-    ]),
-    15
-  );
-}
-
-fn solution(a: Vec<i32>) -> i32 {
-  a[(a.len() - 1) / 2]
+  let res = math::add(1);
+  let res = helpers::strings::append_to("Hello ".to_string(), "World!");
+  let res = helpers::helper_mod::say_hello();
+  println!("{}", res);
 }
