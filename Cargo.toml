@@ -7,6 +7,8 @@ edition = "2021"
 
 [dependencies]
 num-traits = "0.2.15"
+rust_decimal = "1.25"
+rust_decimal_macros = "1.25"
 
 [dev-dependencies]
 regex = "0.1.41"
