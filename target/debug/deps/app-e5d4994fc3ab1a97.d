@@ -1,5 +1,11 @@
+<<<<<<< HEAD
+/Users/marcis/masiu/rust-stuff/target/debug/deps/app-e5d4994fc3ab1a97: src/main.rs
+
+/Users/marcis/masiu/rust-stuff/target/debug/deps/app-e5d4994fc3ab1a97.d: src/main.rs
+=======
 /Users/masiuciszek/projects/good-stuff/rust-stuff/target/debug/deps/app-e5d4994fc3ab1a97: src/main.rs
 
 /Users/masiuciszek/projects/good-stuff/rust-stuff/target/debug/deps/app-e5d4994fc3ab1a97.d: src/main.rs
+>>>>>>> e3d0ab3b1fdd74e3e5c2c7075758d54501cd700c
 
 src/main.rs:
