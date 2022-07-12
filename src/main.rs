@@ -1,7 +1,4 @@
 mod data_structures;
+mod problem_solving;
 
-struct Some {
-    name: String,
-    age: u8,
-}
 fn main() {}

@@ -1,1 +1,1 @@
-/Users/marcis/masiu/rust-stuff/target/debug/app: /Users/marcis/masiu/rust-stuff/src/main.rs
+/Users/marcis/masiu/rust-stuff/target/debug/app: /Users/marcis/masiu/rust-stuff/src/data_structures/mod.rs /Users/marcis/masiu/rust-stuff/src/data_structures/stack.rs /Users/marcis/masiu/rust-stuff/src/main.rs /Users/marcis/masiu/rust-stuff/src/problem_solving/array_max_consecutive_sum.rs /Users/marcis/masiu/rust-stuff/src/problem_solving/dummy.rs /Users/marcis/masiu/rust-stuff/src/problem_solving/mod.rs /Users/marcis/masiu/rust-stuff/src/problem_solving/reverse.rs
