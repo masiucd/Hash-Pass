@@ -33,19 +33,23 @@ impl Stackable for Stack {
     }
 }
 
-#[test]
-fn test_stack() {
-    let mut stack = Stack {
-        data: vec![],
-        size: 0,
-    };
-    stack.push(1);
-    stack.push(2);
-    stack.push(3);
-    assert_eq!(stack.len(), 3);
-    assert_eq!(stack.peek(), 3);
-    assert_eq!(stack.pop(), 3);
-    assert_eq!(stack.pop(), 2);
-    assert_eq!(stack.pop(), 1);
-    assert_eq!(stack.len(), 0);
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn test_stack() {
+        let mut stack = Stack {
+            data: vec![],
+            size: 0,
+        };
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+        assert_eq!(stack.len(), 3);
+        assert_eq!(stack.peek(), 3);
+        assert_eq!(stack.pop(), 3);
+        assert_eq!(stack.pop(), 2);
+        assert_eq!(stack.pop(), 1);
+        assert_eq!(stack.len(), 0);
+    }
 }
