@@ -19,7 +19,7 @@ impl Queueable for Queue {
         self.size += 1;
     }
     fn dequeue(&mut self) -> i32 {
-        let item = self.items.pop_front().unwrap();
+        let item = self.items.pop_back().unwrap();
         self.size -= 1;
         item
     }
@@ -27,7 +27,7 @@ impl Queueable for Queue {
         self.size == 0
     }
     fn peek(&self) -> i32 {
-        self.items.front().unwrap().clone()
+        self.items.back().unwrap().clone()
     }
     fn make() -> Queue {
         Queue {
@@ -41,7 +41,7 @@ impl Queueable for Queue {
 mod tests {
     use super::Queueable;
     #[test]
-    fn test_queue() {
+    fn queue_demo() {
         let mut queue = super::Queue::make();
         queue.enqueue(1);
         queue.enqueue(2);
