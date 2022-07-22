@@ -1,11 +1,4 @@
-mod data_structures;
-mod helpers;
-use data_structures::stack::{Stack, Stackable};
-
-fn main() {
-    let result = rev_string_stack("input".to_string());
-    println!("{}", result);
-}
+use super::*;
 
 fn rev_string_stack(input: String) -> String {
     let mut stack = data_structures::stack::Stack {
@@ -20,4 +13,17 @@ fn rev_string_stack(input: String) -> String {
         result.push(stack.pop() as u8 as char);
     }
     result
+}
+
+#[cfg(test)]
+mod tests {
+
+    #[test]
+    fn test_rev_string_stack() {
+        assert_eq!(rev_string_stack("apa".to_string()), "apa".to_string());
+        assert_eq!(
+            rev_string_stack("marcell".to_string()),
+            "llecram".to_string()
+        );
+    }
 }
