@@ -1,9 +1,3 @@
-mod data_structures;
-mod exercism;
-mod helpers;
-mod iterators;
-use iterators::my_iter::Counter;
-
 fn remove_adjacent_siblings(input: String) -> String {
     let mut stack = Vec::new();
     for c in input.chars() {
@@ -47,9 +41,4 @@ mod tests {
             "".to_string()
         );
     }
-}
-
-fn main() {
-    let res = remove_adjacent_siblings("aabbbbbccdd".to_string());
-    println!("{}", res);
 }
