@@ -7,14 +7,12 @@ fn remove_adjacent_siblings(input: String) -> String {
             stack.push(c);
         }
     }
-    println!("{:?}", stack);
     stack.iter().collect()
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-
     #[test]
     fn test_aaabbb() {
         assert_eq!(
