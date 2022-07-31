@@ -3,14 +3,21 @@ pub struct Stack {
     pub size: usize,
 }
 
-trait Stackable {
+pub trait Stackable {
     fn push(&mut self, value: i32);
     fn pop(&mut self) -> i32;
     fn len(&self) -> usize;
     fn peek(&self) -> i32;
+    fn new() -> Self;
 }
 
 impl Stackable for Stack {
+    fn new() -> Stack {
+        Stack {
+            data: Vec::new(),
+            size: 0,
+        }
+    }
     fn push(&mut self, value: i32) {
         self.data.push(value);
         self.size += 1;
