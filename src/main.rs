@@ -1,16 +1,9 @@
 mod data_structures;
 mod problem_solving;
-// use data_structures::list::{List, Listable};
+mod utils;
+use utils::num::sum_generic;
 
 fn main() {
-  let xs = vec![1, 2, 3];
-  let next = xs.iter().next();
-
-  if let Some(num) = next {
-    println!("{}", num);
-  }
-
-  for x in xs {
+    let x = sum_generic(10, 20);
     println!("{}", x);
-  }
 }
