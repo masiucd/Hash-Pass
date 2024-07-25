@@ -1,3 +1,5 @@
+import {PageWrapper} from "../_components/page-wrapper";
+
 export default function Home() {
-  return <main></main>;
+  return <PageWrapper className="border border-blue-500"></PageWrapper>;
 }
