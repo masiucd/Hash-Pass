@@ -15,8 +15,8 @@ export function PageWrapper({
   return (
     <section
       className={cn(
-        "mx-auto w-full flex flex-col flex-1",
-        fluid ? "max-w-none" : "w-app-width",
+        "mx-auto flex flex-col flex-1",
+        fluid ? "w-full" : "w-app-width",
         className
       )}
     >

@@ -23,7 +23,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Theme
           appearance="inherit"
-          accentColor="plum"
+          accentColor="mint"
           grayColor="olive"
           radius="medium"
           scaling="95%"

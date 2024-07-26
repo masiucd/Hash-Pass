@@ -9,14 +9,17 @@ export async function hashUserInputPassword(
   data: FormData
 ) {
   let hashedPasswordInput = data.get("hashed-password");
-  // let saltInput = data.get("salt");
-  if (typeof hashedPasswordInput !== "string") {
+  let saltInput = data.get("salt");
+
+  if (
+    typeof hashedPasswordInput !== "string" ||
+    typeof saltInput !== "string"
+  ) {
     throw new Error("Invalid input");
   }
-  let salt = await genSalt(10);
-  let hashedPassword = await hash(hashedPasswordInput, salt);
 
-  // let result = await compare(hashedPasswordInput, hashedPassword);
+  let salt = await genSalt(parseInt(saltInput, 10));
+  let hashedPassword = await hash(hashedPasswordInput, salt);
 
   return hashedPassword;
 }
