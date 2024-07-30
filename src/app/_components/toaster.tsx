@@ -1,10 +1,16 @@
 import toast, {
   Toaster as ReactHotToaster,
   type ToasterProps,
+  type ToastOptions,
 } from "react-hot-toast";
 
-export function notify(message: string) {
-  return toast(message);
+import {Icons} from "./icons";
+
+export function notify(message: string, options?: ToastOptions) {
+  return toast(message, {
+    ...options,
+    icon: <Icons.Info className="text-green-600" />,
+  });
 }
 
 export function notifyError(message: string) {

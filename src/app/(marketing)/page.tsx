@@ -9,7 +9,7 @@ export default function Home() {
     <PageWrapper className="border border-blue-500">
       <Flex direction="column" gap="2" my="2">
         <H1>Password Generator</H1>
-        <Lead>Generate a strong password to keep your accounts secure</Lead>
+        <Lead>Hash your input</Lead>
       </Flex>
       <Flex>
         <HashPasswordForm />

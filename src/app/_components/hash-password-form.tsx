@@ -1,12 +1,13 @@
 "use client";
 
-import {Button} from "@radix-ui/themes";
-import {type PropsWithChildren, useState} from "react";
+import {Button, Slider} from "@radix-ui/themes";
+import {useState} from "react";
 import {useFormState} from "react-dom";
 
 import {hashUserInputPassword} from "../(marketing)/actions";
 import {Input} from "./input";
 import {notify, Toaster} from "./toaster";
+import {Label} from "./typography";
 
 const SALT_DEFAULT = 8;
 
@@ -15,14 +16,11 @@ export function HashPasswordForm() {
   let [saltValue, setSaltValue] = useState([SALT_DEFAULT]);
 
   return (
-    <div className="w-full max-w-3xl">
-      <form
-        action={formAction}
-        className="flex w-[400px] flex-col gap-2 border border-red-500 "
-      >
+    <div className="w-[550px]">
+      <form action={formAction} className="flex  flex-col gap-4 px-2 py-1 ">
         <label htmlFor="password" className="flex flex-col gap-1">
-          <span>password</span>
-          <input
+          <Label>Password</Label>
+          <Input
             type="text"
             id="password"
             name="password"
@@ -32,16 +30,16 @@ export function HashPasswordForm() {
         </label>
         <div className="flex flex-col">
           <label htmlFor="salt" className="flex flex-col gap-1">
-            <span>Salt {saltValue} </span>
-            <input
-              type="range"
+            <Label>Salt {saltValue} </Label>
+            <Slider
+              // type="range"
               name="salt"
               id="salt"
               min={4}
               max={16}
-              defaultValue={saltValue[0]}
-              onChange={(e) => {
-                setSaltValue([Number(e.target.value)]);
+              value={saltValue}
+              onValueChange={(value) => {
+                setSaltValue(value);
               }}
             />
           </label>
@@ -51,7 +49,7 @@ export function HashPasswordForm() {
         </Button>
       </form>
       {state !== null && (
-        <div className="mt-10 flex w-[500px] animate-fade justify-between gap-1 ">
+        <div className="mt-10 flex  animate-fade justify-between gap-1 ">
           <Input type="text" readOnly value={state} className="w-full" />
           <Button
             type="button"
@@ -66,7 +64,7 @@ export function HashPasswordForm() {
           </Button>
         </div>
       )}
-      <Toaster />
+      <Toaster position="bottom-right" />
     </div>
   );
 }
