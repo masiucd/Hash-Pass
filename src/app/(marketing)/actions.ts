@@ -8,9 +8,8 @@ export async function hashUserInputPassword(
   prev: string | null,
   data: FormData
 ) {
-  let hashedPasswordInput = data.get("hashed-password");
+  let hashedPasswordInput = data.get("password");
   let saltInput = data.get("salt");
-
   if (
     typeof hashedPasswordInput !== "string" ||
     typeof saltInput !== "string"
@@ -18,8 +17,7 @@ export async function hashUserInputPassword(
     throw new Error("Invalid input");
   }
 
-  let salt = await genSalt(parseInt(saltInput, 10));
+  let salt = await genSalt(Number(saltInput));
   let hashedPassword = await hash(hashedPasswordInput, salt);
-
   return hashedPassword;
 }

@@ -1,13 +1,12 @@
 "use client";
-import {Box, Button, Flex, Slider, TextField} from "@radix-ui/themes";
+
+import {Button} from "@radix-ui/themes";
 import {type PropsWithChildren, useState} from "react";
 import {useFormState} from "react-dom";
 
 import {hashUserInputPassword} from "../(marketing)/actions";
-import {cn} from "../lib/cn";
 import {Input} from "./input";
 import {notify, Toaster} from "./toaster";
-import {H2, Label, Span} from "./typography";
 
 const SALT_DEFAULT = 8;
 
@@ -16,75 +15,58 @@ export function HashPasswordForm() {
   let [saltValue, setSaltValue] = useState([SALT_DEFAULT]);
 
   return (
-    <Box width="800px" className="border-2 border-red-400" p="3">
-      <H2>Hash your password</H2>
-      <form action={formAction}>
-        <fieldset className={cn("flex flex-col gap-2")}>
-          <Flex direction="column" gap="2">
-            <FormLabel>Password</FormLabel>
-            <Input
-              name="hashed-password"
-              type="text"
-              placeholder="Add the password"
-              required
-            />
-          </Flex>
-
-          <Flex direction="column" gap="2" mb="2" width="200px">
-            <FormLabel>Salt</FormLabel>
-            <Span>{saltValue}</Span>
-            <Slider
+    <div className="w-full max-w-3xl">
+      <form
+        action={formAction}
+        className="flex w-[400px] flex-col gap-2 border border-red-500 "
+      >
+        <label htmlFor="password" className="flex flex-col gap-1">
+          <span>password</span>
+          <input
+            type="text"
+            id="password"
+            name="password"
+            placeholder="input value..."
+            required
+          />
+        </label>
+        <div className="flex flex-col">
+          <label htmlFor="salt" className="flex flex-col gap-1">
+            <span>Salt {saltValue} </span>
+            <input
+              type="range"
               name="salt"
-              defaultValue={[SALT_DEFAULT]}
-              value={saltValue}
-              onValueChange={(value) => {
-                setSaltValue(value);
+              id="salt"
+              min={4}
+              max={16}
+              defaultValue={saltValue[0]}
+              onChange={(e) => {
+                setSaltValue([Number(e.target.value)]);
               }}
-              size="3"
-              variant="soft"
-              max={30}
             />
-          </Flex>
-          <Button size="4" type="submit" variant="classic">
-            <Span weight="medium">Generate</Span>
-          </Button>
-        </fieldset>
+          </label>
+        </div>
+        <Button type="submit">
+          <span>Generate Hash</span>
+        </Button>
       </form>
-      {state && (
-        <Flex direction="column" width="full" className="animate-fade">
-          <H2>Hashed password</H2>
-          <Flex
-            gap="5"
-            flexGrow="1"
-            width="100%"
-            className="border-2"
-            align="center"
+      {state !== null && (
+        <div className="mt-10 flex w-[500px] animate-fade justify-between gap-1 ">
+          <Input type="text" readOnly value={state} className="w-full" />
+          <Button
+            type="button"
+            variant="soft"
+            size="3"
+            onClick={() => {
+              navigator.clipboard.writeText(state);
+              notify("Copied to clipboard");
+            }}
           >
-            <Input value={state} readOnly className="w-full" />
-            <Button
-              variant="ghost"
-              onClick={() => {
-                if (typeof navigator.clipboard === "undefined") {
-                  return;
-                }
-                navigator.clipboard.writeText(state);
-                notify("Copied to clipboard");
-              }}
-            >
-              Copy
-            </Button>
-          </Flex>
-        </Flex>
+            Copy
+          </Button>
+        </div>
       )}
-      <Toaster position="top-right" reverseOrder={false} />
-    </Box>
-  );
-}
-
-function FormLabel({children}: PropsWithChildren) {
-  return (
-    <Label weight="medium" size="4">
-      {children}
-    </Label>
+      <Toaster />
+    </div>
   );
 }
