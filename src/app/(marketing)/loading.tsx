@@ -1,15 +1,22 @@
-import {Flex, Skeleton} from "@radix-ui/themes";
+import {Flex, Grid, Skeleton} from "@radix-ui/themes";
 
 import {PageWrapper} from "../_components/page-wrapper";
 
 export default function Loading() {
   return (
-    <PageWrapper>
-      <Flex direction="column" gap="5">
-        {classNames.map((className) => (
-          <Skeleton key={className} className={className} />
-        ))}
-      </Flex>
+    <PageWrapper fluid>
+      <Grid columns="2" justify="center" align="center" flow="dense">
+        <Flex direction="column" gap="5" flexGrow="1" justify="center">
+          {classNames.map((className) => (
+            <Skeleton key={className} className={className} />
+          ))}
+        </Flex>
+        <Flex direction="column" gap="5" flexGrow="1">
+          {classNames.map((className) => (
+            <Skeleton key={className} className={className} />
+          ))}
+        </Flex>
+      </Grid>
     </PageWrapper>
   );
 }

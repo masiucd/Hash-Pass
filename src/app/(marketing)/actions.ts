@@ -5,19 +5,19 @@ import "server-only";
 import {genSalt, hash} from "bcrypt";
 
 export async function hashUserInputPassword(
-  prev: string | null,
+  prev: {
+    hashedPassword: string;
+    input: string;
+  } | null,
   data: FormData
 ) {
-  let hashedPasswordInput = data.get("password");
+  let input = data.get("password");
   let saltInput = data.get("salt");
-  if (
-    typeof hashedPasswordInput !== "string" ||
-    typeof saltInput !== "string"
-  ) {
+  if (typeof input !== "string" || typeof saltInput !== "string") {
     throw new Error("Invalid input");
   }
 
   let salt = await genSalt(Number(saltInput));
-  let hashedPassword = await hash(hashedPasswordInput, salt);
-  return hashedPassword;
+  let hashedPassword = await hash(input, salt);
+  return {hashedPassword, input};
 }
