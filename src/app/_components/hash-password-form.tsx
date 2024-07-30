@@ -63,7 +63,7 @@ export function HashPasswordForm() {
               <DataList.Label minWidth="88px">Status</DataList.Label>
               <DataList.Value>
                 <Badge color="jade" variant="soft" radius="full">
-                  Authorized
+                  Success
                 </Badge>
               </DataList.Value>
             </DataList.Item>
@@ -90,8 +90,8 @@ export function HashPasswordForm() {
               </DataList.Value>
             </DataList.Item>
             <DataList.Item>
-              <DataList.Label minWidth="88px">Name</DataList.Label>
-              <DataList.Value>Vlad Moroz</DataList.Value>
+              <DataList.Label minWidth="88px">Input</DataList.Label>
+              <DataList.Value>Render base input TODO!</DataList.Value>
             </DataList.Item>
           </DataList.Root>
         </div>
