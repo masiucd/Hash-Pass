@@ -1,4 +1,6 @@
 import {
+  Code as RadixCode,
+  type CodeProps,
   Heading,
   type HeadingProps,
   Text,
@@ -41,4 +43,7 @@ export function Muted(props: TextProps) {
 
 export function Lead(props: TextProps) {
   return <Text color="gray" as="p" size="6" {...props} />;
+}
+export function Code(props: CodeProps) {
+  return <RadixCode {...props} />;
 }

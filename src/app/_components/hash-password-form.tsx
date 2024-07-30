@@ -1,13 +1,21 @@
 "use client";
 
-import {Button, Slider} from "@radix-ui/themes";
+import {
+  Badge,
+  Button,
+  DataList,
+  Flex,
+  IconButton,
+  Slider,
+} from "@radix-ui/themes";
 import {useState} from "react";
 import {useFormState} from "react-dom";
 
 import {hashUserInputPassword} from "../(marketing)/actions";
+import {Icons} from "./icons";
 import {Input} from "./input";
 import {notify, Toaster} from "./toaster";
-import {Label} from "./typography";
+import {Code, Label} from "./typography";
 
 const SALT_DEFAULT = 8;
 
@@ -50,21 +58,45 @@ export function HashPasswordForm() {
       </form>
       {state !== null && (
         <div className="mt-10 flex  animate-fade justify-between gap-1 ">
-          <Input type="text" readOnly value={state} className="w-full" />
-          <Button
-            type="button"
-            variant="soft"
-            size="3"
-            onClick={() => {
-              navigator.clipboard.writeText(state);
-              notify("Copied to clipboard");
-            }}
-          >
-            Copy
-          </Button>
+          <DataList.Root>
+            <DataList.Item align="center">
+              <DataList.Label minWidth="88px">Status</DataList.Label>
+              <DataList.Value>
+                <Badge color="jade" variant="soft" radius="full">
+                  Authorized
+                </Badge>
+              </DataList.Value>
+            </DataList.Item>
+            <DataList.Item>
+              <DataList.Label minWidth="88px">ID</DataList.Label>
+              <DataList.Value>
+                <Flex align="center" gap="2">
+                  <Code variant="ghost">{state}</Code>
+                  <IconButton
+                    size="1"
+                    aria-label="Copy value"
+                    color="gray"
+                    variant="ghost"
+                    onClick={() => {
+                      navigator.clipboard.writeText(state);
+                      notify("Copied to clipboard");
+                    }}
+                  >
+                    <Flex gap="1">
+                      <Icons.Copy /> Copy
+                    </Flex>
+                  </IconButton>
+                </Flex>
+              </DataList.Value>
+            </DataList.Item>
+            <DataList.Item>
+              <DataList.Label minWidth="88px">Name</DataList.Label>
+              <DataList.Value>Vlad Moroz</DataList.Value>
+            </DataList.Item>
+          </DataList.Root>
         </div>
       )}
-      <Toaster position="bottom-right" />
+      <Toaster position="top-center" />
     </div>
   );
 }
