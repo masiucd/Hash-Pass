@@ -7,6 +7,8 @@ import {
   type TextProps,
 } from "@radix-ui/themes";
 
+import {cn} from "../lib/cn";
+
 export function H1(props: HeadingProps) {
   return <Heading size="9" {...props} as="h1" />;
 }
@@ -42,7 +44,15 @@ export function Muted(props: TextProps) {
 }
 
 export function Lead(props: TextProps) {
-  return <Text color="gray" as="p" size="6" {...props} />;
+  return (
+    <Text
+      color="gray"
+      as="p"
+      size="6"
+      {...props}
+      className={cn("opacity-80", props.className)}
+    />
+  );
 }
 export function Code(props: CodeProps) {
   return <RadixCode {...props} />;

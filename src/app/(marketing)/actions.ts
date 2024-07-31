@@ -17,6 +17,7 @@ export async function hashUserInputPassword(
     throw new Error("Invalid input");
   }
 
+  console.log({input, saltInput});
   let salt = await genSalt(Number(saltInput));
   let hashedPassword = await hash(input, salt);
   return {hashedPassword, input};

@@ -7,14 +7,21 @@ import {H1, Lead} from "../_components/typography";
 import {VerifyForm} from "../_components/verify-form";
 import {sleep} from "../lib/sleep";
 
-export async function verifyHash(prev: any, data: FormData) {
+export async function verifyHash(
+  prev: null | {
+    ok: boolean;
+    message: string;
+  },
+  data: FormData
+) {
   "use server";
   let rawInput = data.get("raw-input");
   let hashedInput = data.get("hashed-input");
   if (typeof rawInput !== "string" || typeof hashedInput !== "string") {
     throw new Error("Missing data");
   }
-  let ok = await compare(hashedInput, rawInput);
+  let ok = await compare(rawInput.trim(), hashedInput.trim());
+
   if (ok) {
     return {
       ok,
@@ -28,18 +35,19 @@ export async function verifyHash(prev: any, data: FormData) {
 }
 
 export default async function Home() {
-  await sleep(3000);
+  await sleep(1000);
   return (
     <PageWrapper>
-      <Flex direction="column" gap="2" my="3">
-        <H1>Password Generator</H1>
-        <Lead>Hash/verify your input</Lead>
+      {/* TODO make it responsive */}
+      <Flex direction="column" gap="2" my="5">
+        <H1>Hash / Verify Password</H1>
+        <Lead>Hash a password and verify it using bcrypt.</Lead>
       </Flex>
-      <Flex justify="between">
-        <Box width="550px" className="shadow">
+      <Flex justify="between" gap="9">
+        <Box width="700px">
           <HashPasswordForm />
         </Box>
-        <Box width="550px" className="shadow">
+        <Box width="700px">
           <VerifyForm action={verifyHash} />
         </Box>
       </Flex>
