@@ -38,19 +38,18 @@ export default async function Home() {
   await sleep(1000);
   return (
     <PageWrapper>
-      {/* TODO make it responsive */}
       <Flex direction="column" gap="2" my="5">
         <H1>Hash / Verify Password</H1>
         <Lead>Hash a password and verify it using bcrypt.</Lead>
       </Flex>
-      <Flex justify="between" gap="9">
+      <div className="flex flex-col 2xl:flex-row 2xl:gap-10">
         <Box width="700px">
           <HashPasswordForm />
         </Box>
         <Box width="700px">
           <VerifyForm action={verifyHash} />
         </Box>
-      </Flex>
+      </div>
     </PageWrapper>
   );
 }
