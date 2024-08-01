@@ -5,9 +5,8 @@ import {HashPasswordForm} from "../_components/hash-password-form";
 import {PageWrapper} from "../_components/page-wrapper";
 import {H1, Lead} from "../_components/typography";
 import {VerifyForm} from "../_components/verify-form";
-import {sleep} from "../lib/sleep";
 
-export async function verifyHash(
+async function verifyHash(
   prev: null | {
     ok: boolean;
     message: string;
@@ -34,8 +33,7 @@ export async function verifyHash(
   };
 }
 
-export default async function Home() {
-  await sleep(1000);
+export default function Home() {
   return (
     <PageWrapper>
       <Flex direction="column" gap="2" my="5">

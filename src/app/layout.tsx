@@ -9,7 +9,7 @@ import type {ReactNode} from "react";
 const inter = Inter({subsets: ["latin"]});
 
 export const metadata: Metadata = {
-  title: "Password generator",
+  title: "Hash Pass",
   description: "Generate secure passwords",
 };
 

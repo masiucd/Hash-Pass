@@ -62,7 +62,9 @@ function Footer() {
       <div className="mx-auto flex h-full w-app-width items-center ">
         <Flex direction="column">
           <Label asChild>
-            <small>© 2021 HashPass. All Rights Reserved.</small>
+            <small>
+              © {new Date().getFullYear()} HashPass. All Rights Reserved.
+            </small>
           </Label>
           <Label asChild>
             <small>
