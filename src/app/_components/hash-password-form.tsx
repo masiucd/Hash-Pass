@@ -57,6 +57,7 @@ export function HashPasswordForm() {
             id="salt"
             min={4}
             max={16}
+            variant="soft"
             value={saltValue}
             onValueChange={(value) => {
               setSaltValue(value);

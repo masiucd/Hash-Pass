@@ -3,6 +3,8 @@ import {
   type CodeProps,
   Heading,
   type HeadingProps,
+  Strong as RadixStrong,
+  type StrongProps,
   Text,
   type TextProps,
 } from "@radix-ui/themes";
@@ -56,4 +58,7 @@ export function Lead(props: TextProps) {
 }
 export function Code(props: CodeProps) {
   return <RadixCode {...props} />;
+}
+export function Strong(props: StrongProps) {
+  return <RadixStrong {...props} />;
 }
