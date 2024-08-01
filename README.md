@@ -2,10 +2,12 @@
 
 ## Description
 
-This is a simple password generator that generates a password based on the user's input. The user can choose the length of the password and whether to include uppercase letters, lowercase letters, numbers, and special characters. The password is generated randomly and is displayed on the screen. The user can then copy the password to the clipboard by clicking the "Copy to Clipboard" button.
+This is a simple application where you can hash your password and verify it using [bcrypt](https://www.npmjs.com/package/bcrypt) library. The application is built using [Next.js](https://nextjs.org/) and [React](https://reactjs.org/).
 
-Also the user can hash the passwords using different algorithms like MD5, SHA1, SHA256, SHA512, and SHA3-256.
-This is something I need sometimes when building some hobby projects and I thought it would be a good idea to have a simple password generator that I can use whenever I need it.
+## Purpose of the project
+
+Nothing special just sometimes when working on other projects I need a tool to hash my passwords and verify them. So I decided to create this simple application.
+Also take te opportunity to learn more about Next.js and React using server-components and Radix themes.
 
 ## Technologies
 
@@ -13,3 +15,4 @@ This is something I need sometimes when building some hobby projects and I thoug
 - [Next.js](https://nextjs.org/)
 - [Radix themes](https://radix-ui.com/)
 - [Tailwind CSS](https://tailwindcss.com/)
+- [Typescript](https://www.typescriptlang.org/)
