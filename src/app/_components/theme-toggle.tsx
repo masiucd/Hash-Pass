@@ -19,8 +19,12 @@ export function ThemeToggle() {
           checked={theme === "dark"}
           defaultChecked
         />
-        <Span className="capitalize">
-          {theme === "dark" ? <Icons.Sun /> : <Icons.Moon />}
+        <Span className=" capitalize">
+          {theme === "dark" ? (
+            <Icons.Sun className="animate-fade-up" />
+          ) : (
+            <Icons.Moon className="animate-fade-down" />
+          )}
         </Span>
       </Flex>
     </Label>
