@@ -4,6 +4,7 @@ import "@radix-ui/themes/styles.css";
 import {Theme} from "@radix-ui/themes";
 import type {Metadata} from "next";
 import {Inter} from "next/font/google";
+import {ThemeProvider} from "next-themes";
 import type {ReactNode} from "react";
 
 const inter = Inter({subsets: ["latin"]});
@@ -21,15 +22,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Theme
-          appearance="inherit"
-          accentColor="mint"
-          grayColor="olive"
-          radius="medium"
-          scaling="95%"
-        >
-          {children}
-        </Theme>
+        <ThemeProvider attribute="class">
+          <Theme
+            appearance="inherit"
+            accentColor="mint"
+            grayColor="olive"
+            radius="medium"
+            scaling="95%"
+          >
+            {children}
+          </Theme>
+        </ThemeProvider>
       </body>
     </html>
   );

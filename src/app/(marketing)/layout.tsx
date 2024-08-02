@@ -2,6 +2,7 @@ import {Flex} from "@radix-ui/themes";
 import Link from "next/link";
 import type {ReactNode} from "react";
 
+import {ThemeToggle} from "../_components/theme-toggle";
 import {H4, Label} from "../_components/typography";
 
 export default function MarketingLayout({
@@ -29,28 +30,31 @@ function Header() {
             className="opacity-75 transition-transform hover:scale-105 hover:opacity-100 "
             size="5"
           >
-            <span className="text-gray-700">Hash</span>
-            <span className="text-gray-800">Pass</span>
+            <span className="text-gray-700 dark:text-gray-300">Hash</span>
+            <span className="text-gray-800 dark:text-gray-400">Pass</span>
           </H4>
         </Link>
-        <nav className="flex">
-          <ul className="flex gap-4">
-            <li>
-              <Link href="/about">
-                <Label className="block cursor-pointer text-sm font-semibold opacity-75 transition-transform hover:scale-105 hover:opacity-100">
-                  About
-                </Label>
-              </Link>
-            </li>
-            <li>
-              <Link href="/contact">
-                <Label className="block cursor-pointer text-sm font-semibold opacity-75 transition-transform hover:scale-105 hover:opacity-100">
-                  Contact
-                </Label>
-              </Link>
-            </li>
-          </ul>
-        </nav>
+        <Flex asChild align="center" gap="3">
+          <nav>
+            <ul className="flex gap-4">
+              <li>
+                <Link href="/about">
+                  <Label className="block cursor-pointer text-sm font-semibold opacity-75 transition-transform hover:scale-105 hover:opacity-100">
+                    About
+                  </Label>
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact">
+                  <Label className="block cursor-pointer text-sm font-semibold opacity-75 transition-transform hover:scale-105 hover:opacity-100">
+                    Contact
+                  </Label>
+                </Link>
+              </li>
+            </ul>
+            <ThemeToggle />
+          </nav>
+        </Flex>
       </div>
     </header>
   );

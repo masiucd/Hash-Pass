@@ -3,7 +3,9 @@ import {
   Info,
   Laptop,
   type LucideProps,
+  Moon,
   PersonStanding,
+  Sun,
 } from "lucide-react";
 import type {SVGProps} from "react";
 
@@ -15,6 +17,8 @@ export let Icons = Object.freeze({
   Website: (props: LucideProps) => <Laptop size={ICONS_SIZE} {...props} />,
   Github: (props: IconProps) => <GithubIcon {...props} />,
   X: (props: IconProps) => <XIcon {...props} />,
+  Moon: (props: LucideProps) => <Moon size={ICONS_SIZE} {...props} />,
+  Sun: (props: LucideProps) => <Sun size={ICONS_SIZE} {...props} />,
 });
 
 interface IconProps extends SVGProps<SVGSVGElement> {}
